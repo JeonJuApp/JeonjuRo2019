@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content">
+<!-- 클릭했을 때 -->
+<item   android:state_selected="true">
+    <shape>
+        <solid android:color="#356d9e" />
+        <corners android:radius="15dp" />
+    </shape>
+</item>
+
+<item>
+    <shape>
+        <solid android:color="#FFFFffff" />
+        <corners android:radius="15dp" />
+    </shape>
+</item>
+</selector>
