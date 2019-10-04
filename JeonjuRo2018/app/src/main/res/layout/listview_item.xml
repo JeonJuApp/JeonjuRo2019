@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="175dp"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp"
+    android:paddingTop="7dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/listImage"
+            android:layout_width="25dp"
+            android:layout_height="120dp"
+            android:src="@drawable/list"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitXY"
+            />
+        <TextView
+            android:id="@+id/listTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/listImage"
+            android:textSize="17dp"
+            android:fontFamily="@font/binggraebold"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/listBusStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listTitle"
+            android:layout_toRightOf="@+id/listImage"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/binggrae"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_below="@+id/listBusStop"
+            android:layout_toRightOf="@+id/listImage"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/binggraebold"
+            />
+
+        <TextView
+            android:id="@+id/listTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/listImage"
+            android:layout_below="@+id/timeText"
+            android:textSize="17dp"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/binggraebold"
+            />
+
+        <TextView
+            android:id="@+id/listBusStop2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listTitle2"
+            android:layout_toRightOf="@+id/listImage"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/binggrae"
+            android:textSize="14dp"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
