@@ -51,7 +51,6 @@ public class RestMain extends AppCompatActivity {
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
             String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
-            String data = "&keyword=%EC%88%98%EB%9D%BC%EC%98%A8";
             URL url = new URL(rl+key);//검색 URL부분
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
