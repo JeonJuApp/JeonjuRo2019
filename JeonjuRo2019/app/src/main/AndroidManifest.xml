@@ -33,7 +33,7 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".CustomActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +48,7 @@
         <activity android:name=".Result" />
         <activity android:name=".Result2" />
         <activity android:name=".Result3" />
+        <activity android:name=".BusTotalResult" />
         <activity android:name=".TourMain" />
         <activity android:name=".RestMain" />
         <activity android:name=".AccomoMain" />
@@ -59,7 +60,6 @@
         <activity
             android:name=".addDialog"
             android:theme="@style/Dialog" />
-        <activity android:name=".HomeActivity" />
         <activity android:name=".ShowActivity"></activity>
     </application>
 
