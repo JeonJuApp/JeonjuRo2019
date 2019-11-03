@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO INFO VALUES(null, '" + category + "', " + datatitle + ", '" + address + "', '" + intro + "', '" + content + "', '" + posx + "', '" + posy + "', '" + homepage + "', '" + accomotype + "', '" + storename + "',, '" + menu + "', '" + opentime + "', '" + holiday + "',, '" + img + "');");
+        db.execSQL("INSERT INTO INFO VALUES(null, '" + category + "', '" + datatitle + "', '" + address + "', '" + intro + "', '" + content + "', '" + posx + "', '" + posy + "', '" + homepage + "', '" + accomotype + "', '" + storename + "', '" + menu + "', '" + opentime + "', '" + holiday + "', '" + img + "');");
         db.close();
     }
 
@@ -60,21 +60,25 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public String getResult(String name, int pagenum) { //PDF 제목이랑 페이지수가 같은 경우 picture이름 반환
+    public String getResult() { //PDF 제목이랑 페이지수가 같은 경우 picture이름 반환
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
         Log.i("정보","DB헬퍼 입성");
-        Cursor cursor = db.rawQuery("SELECT * FROM INFO WHERE title='" + name + "' AND page='" + pagenum + "';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM INFO", null);
         Log.i("정보",cursor.toString());
 
-        if(cursor != null) {
+        /*if(cursor != null) {
             cursor.moveToFirst();
             result += cursor.getString(3);
             cursor.close();
-        }
+        }*/
 
-        Log.i("정보",result);
+        while (cursor.moveToNext())
+        {
+            result += cursor.getString(3);
+        }
+        cursor.close();
         return result;
     }
 }
