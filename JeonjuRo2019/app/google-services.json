@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "790044971495",
+    "firebase_url": "https://jeonjuro2019-d226e.firebaseio.com",
+    "project_id": "jeonjuro2019-d226e",
+    "storage_bucket": "jeonjuro2019-d226e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790044971495:android:2b1dd6d6eee74d8b476d42",
+        "android_client_info": {
+          "package_name": "org.androidtown.jeonjuro2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790044971495-ikgvfi8frk69tcfc89fjo156o0l0o673.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.androidtown.jeonjuro2018",
+            "certificate_hash": "faa72ac3132cd4c1705e9c78224edd6f1c493cf8"
+          }
+        },
+        {
+          "client_id": "790044971495-47bmkf3c1c95hf1o223l0uui2ju54rok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4a3NHA9WmLpejof2AuagLYZFAA2lYCeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790044971495-47bmkf3c1c95hf1o223l0uui2ju54rok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
