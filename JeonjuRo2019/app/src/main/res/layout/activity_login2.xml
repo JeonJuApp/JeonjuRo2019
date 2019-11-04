@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         >
-
         <com.google.android.gms.common.SignInButton
             android:id="@+id/Google_Login"
             android:layout_width="250dp"
