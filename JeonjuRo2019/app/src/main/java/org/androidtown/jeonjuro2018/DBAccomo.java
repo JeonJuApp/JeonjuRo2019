@@ -1,6 +1,5 @@
 package org.androidtown.jeonjuro2018;
 
-import android.content.Context;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -10,32 +9,20 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class DBTour {
+public class DBAccomo {
 
-    boolean inAddr = false, infileImg = false, indataTtitle = false, infileUrl = false, indataSid = false, inPosx = false, inPosy = false;
-    String addr = null, dataTitle = null, fileUrl = null, dataSid = null, posx = null, posy = null;
-
-    Context mContext;
-    boolean inHomepage = false;
-    String homepage = null;
-    boolean indataContent = false;
-    String dataContent =  null;
-    int i = 1;
-
+    boolean inAddr = false, infileImg = false, indataTtitle = false, infileUrl = false, indataSid = false,inPosx = false, inPosy = false;
+    boolean inhonokTypeStr = false, inhomepage = false, inintroContent = false, indataContent = false;
+    String addr = null, dataTitle = null, fileUrl = null, dataSid = null, honokTypeStr = null, homepage = null, introContent = null, dataContent = null, posx = null, posy = null;
     ArrayList<TourInfo> tourInfoArrayList;
     ArrayList<TourInfo> tourDataList;
+    int i = 1;
 
     public void load()
     {
-        tourInfoArrayList = new ArrayList<>();
-        tourDataList = new ArrayList<>();
-
-
-
         try {
             StrictMode.enableDefaults();
-
-            String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricList?authApiKey=";
+            String rl = "http://openapi.jeonju.go.kr/rest/hanokhouse/getHanokHouseList?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl + key);
 
@@ -46,31 +33,26 @@ public class DBTour {
             int parserEvent = parser.getEventType();
 
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
-                Log.i("정보","반복문");
                 switch (parserEvent) {
                     case XmlPullParser.START_TAG:
-                        if (parser.getName().equals("dataSid")) {
+                        if (parser.getName().equals("dataSid"))
                             indataSid = true;
-                        }
-                        if (parser.getName().equals("dataTitle")) {
+                        if (parser.getName().equals("dataTitle"))
                             indataTtitle = true;
-                        }
-                        if (parser.getName().equals("addrDtl")) {
+                        if (parser.getName().equals("addr"))
                             inAddr = true;
-                        }
-                        if (parser.getName().equals("introDataContent")) {
+                        if (parser.getName().equals("honokTypeStr"))
+                            inhonokTypeStr = true;
+                        if (parser.getName().equals("homepage"))
+                            inhomepage = true;
+                        if (parser.getName().equals("introContent"))
+                            inintroContent = true;
+                        if (parser.getName().equals("dataContent"))
                             indataContent = true;
-                        }
-                        if (parser.getName().equals("dataContent")) {
-                            inHomepage = true;
-                        }
-                        if (parser.getName().equals("posx")) {
+                        if (parser.getName().equals("posx"))
                             inPosx = true;
-                        }
-                        if (parser.getName().equals("posy")) {
+                        if (parser.getName().equals("posy"))
                             inPosy = true;
-                        }
-
                         break;
                     case XmlPullParser.TEXT:
                         if (indataSid) {
@@ -85,13 +67,21 @@ public class DBTour {
                             addr = parser.getText();
                             inAddr = false;
                         }
+                        if (inhonokTypeStr) {
+                            honokTypeStr = parser.getText();
+                            inhonokTypeStr = false;
+                        }
+                        if (inhomepage) {
+                            homepage = parser.getText();
+                            inhomepage = false;
+                        }
+                        if (inintroContent) {
+                            introContent = parser.getText();
+                            inintroContent = false;
+                        }
                         if (indataContent) {
                             dataContent = parser.getText();
                             indataContent = false;
-                        }
-                        if (inHomepage) {
-                            homepage = parser.getText();
-                            inHomepage = false;
                         }
                         if (inPosx) {
                             posx = parser.getText();
@@ -106,15 +96,13 @@ public class DBTour {
                         if (parser.getName().equals("list")) {
                             comeonImage(dataSid);
                             if (i != 1) {
-                                Log.i("정보", "1번");
-                                tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, dataContent, homepage));
+                                Log.i("정보","여기 어코모 안들어오니?");
+                                tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, introContent, homepage));
                                 tourDataList.add(new TourInfo(dataTitle,fileUrl,posx,posy));
-                                //dbHelper.insert("Tour", dataTitle, addr, null, dataContent, posx, posy, homepage, null, null, null, null, null, fileUrl);
                             } else {
-                                Log.i("정보", "2번");
-                                tourInfoArrayList.add(new TourInfo("http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1", dataTitle, addr, dataContent, homepage));
-                                tourDataList.add(new TourInfo(dataTitle,"http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1",posx,posy));
-                                //dbHelper.insert("Tour", dataTitle, addr, null, dataContent, posx, posy, homepage, null, null, null, null, null, "http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1");
+                                Log.i("정보","여기 어코모 안들어오니2?");
+                                tourInfoArrayList.add(new TourInfo("http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png", dataTitle, addr, introContent, homepage));
+                                tourDataList.add(new TourInfo(dataTitle,"http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png",posx,posy));
                                 i = 0;
                             }
                         }
@@ -123,21 +111,21 @@ public class DBTour {
                 parserEvent = parser.next();
             }
         } catch (Exception e) {
-            Log.i("정보","캐치");
+            Log.i("정보","캐치다?");
         }
 
         //DB에 데이터 넣기
         for(int i = 0; i< tourInfoArrayList.size(); i++)
         {
-            SplashActivity.dbHelper.insert("Tour", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
+            SplashActivity.dbHelper.insert("Accomo", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
         }
+
     }
 
     private void comeonImage(String dataSid) {
         try {
             StrictMode.enableDefaults();
-
-            String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricFile?authApiKey=";
+            String rl = "http://openapi.jeonju.go.kr/rest/hanokhouse/getHanokHosueFile?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D&dataSid=";
             String data = dataSid;
             URL url = new URL(rl + key + data);//검색 URL부분

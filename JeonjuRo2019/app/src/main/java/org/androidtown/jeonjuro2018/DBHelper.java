@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // 새로운 테이블 생성
-        db.execSQL("CREATE TABLE INFO(_id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, datatitle TEXT, address TEXT, introcontent TEXT, content TEXT, posx TEXT, posy TEXT, homepage TEXT, accomotype TEXT, storename TEXT, menu TEXT, opentime TEXT, holiday TEXT, img TEXT);");
+        db.execSQL("CREATE TABLE INFO(_id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, datatitle TEXT, address TEXT, content TEXT, posx TEXT, posy TEXT, homepage TEXT, storename TEXT, menu TEXT, opentime TEXT, holiday TEXT, img TEXT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
@@ -24,11 +24,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insert(String category, String datatitle, String address, String intro, String content, String posx, String posy, String homepage, String accomotype, String storename, String menu, String opentime, String holiday, String img) {
+    public void insert(String category, String datatitle, String address, String content, String posx, String posy, String homepage, String storename, String menu, String opentime, String holiday, String img) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL("INSERT INTO INFO VALUES(null, '" + category + "', '" + datatitle + "', '" + address + "', '" + intro + "', '" + content + "', '" + posx + "', '" + posy + "', '" + homepage + "', '" + accomotype + "', '" + storename + "', '" + menu + "', '" + opentime + "', '" + holiday + "', '" + img + "');");
+        db.execSQL("INSERT INTO INFO VALUES(null, '" + category + "', '" + datatitle + "', '" + address + "', '" + content + "', '" + posx + "', '" + posy + "', '" + homepage + "', '" + storename + "', '" + menu + "', '" + opentime + "', '" + holiday + "', '" + img + "');");
         db.close();
     }
 
@@ -76,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         while (cursor.moveToNext())
         {
-            result += cursor.getString(3);
+            result += cursor.getString(4);
         }
         cursor.close();
         return result;

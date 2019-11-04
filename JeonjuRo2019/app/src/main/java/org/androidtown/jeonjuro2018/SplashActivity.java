@@ -18,6 +18,8 @@ public class SplashActivity extends Activity {
         // DB에 투어 넣기
         DBTour one = new DBTour();
         one.load();
+        DBAccomo two = new DBAccomo();
+        two.load();
 
         startLoading();
     }
