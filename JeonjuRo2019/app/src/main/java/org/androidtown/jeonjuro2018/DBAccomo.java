@@ -20,18 +20,20 @@ public class DBAccomo {
 
     public void load()
     {
+        tourInfoArrayList = new ArrayList<>();
+        tourDataList = new ArrayList<>();
+
+        StrictMode.enableDefaults();
         try {
-            StrictMode.enableDefaults();
             String rl = "http://openapi.jeonju.go.kr/rest/hanokhouse/getHanokHouseList?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl + key);
 
+
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
             XmlPullParser parser = parserCreator.newPullParser();
             parser.setInput(url.openStream(), null);
-
             int parserEvent = parser.getEventType();
-
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
                 switch (parserEvent) {
                     case XmlPullParser.START_TAG:
@@ -96,13 +98,13 @@ public class DBAccomo {
                         if (parser.getName().equals("list")) {
                             comeonImage(dataSid);
                             if (i != 1) {
-                                Log.i("정보","여기 어코모 안들어오니?");
-                                tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, introContent, homepage));
+                                Log.i("정보","어코모 들어오냐?");
+                                tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, dataContent, homepage));
                                 tourDataList.add(new TourInfo(dataTitle,fileUrl,posx,posy));
                             } else {
-                                Log.i("정보","여기 어코모 안들어오니2?");
-                                tourInfoArrayList.add(new TourInfo("http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png", dataTitle, addr, introContent, homepage));
-                                tourDataList.add(new TourInfo(dataTitle,"http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png",posx,posy));
+                                Log.i("정보","어코모 들어오냐?1");
+                                tourInfoArrayList.add(new TourInfo("http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1", dataTitle, addr, dataContent, homepage));
+                                tourDataList.add(new TourInfo(dataTitle,"http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1",posx,posy));
                                 i = 0;
                             }
                         }
@@ -111,20 +113,20 @@ public class DBAccomo {
                 parserEvent = parser.next();
             }
         } catch (Exception e) {
-            Log.i("정보","캐치다?");
+            Log.i("정보","캐치다");
         }
 
         //DB에 데이터 넣기
         for(int i = 0; i< tourInfoArrayList.size(); i++)
         {
             SplashActivity.dbHelper.insert("Accomo", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
+            Log.i("투어정보", SplashActivity.dbHelper.getResult());
         }
-
     }
 
     private void comeonImage(String dataSid) {
+        StrictMode.enableDefaults();
         try {
-            StrictMode.enableDefaults();
             String rl = "http://openapi.jeonju.go.kr/rest/hanokhouse/getHanokHosueFile?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D&dataSid=";
             String data = dataSid;

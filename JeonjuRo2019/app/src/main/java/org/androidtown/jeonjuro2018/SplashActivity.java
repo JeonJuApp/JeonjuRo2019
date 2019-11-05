@@ -15,11 +15,14 @@ public class SplashActivity extends Activity {
 
         dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
 
-        // DB에 투어 넣기
         DBTour one = new DBTour();
         one.load();
+
         DBAccomo two = new DBAccomo();
         two.load();
+
+        DBRest three = new DBRest();
+        three.load();
 
         startLoading();
     }
