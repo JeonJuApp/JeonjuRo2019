@@ -2,18 +2,29 @@
 package org.androidtown.jeonjuro2018;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-
 public class SplashActivity extends Activity {
+
+    static DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
+
+        DBTour one = new DBTour();
+        one.load();
+
+        DBAccomo two = new DBAccomo();
+        two.load();
+
+        DBRest three = new DBRest();
+        three.load();
+
         startLoading();
     }
 
@@ -24,6 +35,6 @@ public class SplashActivity extends Activity {
             public void run() {
                 finish();
             }
-        }, 2000);
+        }, 10000);
     }
 }

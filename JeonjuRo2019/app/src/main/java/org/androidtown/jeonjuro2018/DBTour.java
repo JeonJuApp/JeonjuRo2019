@@ -1,43 +1,16 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.StrictMode;
-import android.provider.ContactsContract;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.channels.Channel;
 import java.util.ArrayList;
 
-public class TourMain extends AppCompatActivity {
-    RecyclerView accomoRecyclerView;
-    RecyclerView.LayoutManager accomoLayoutManager;
+public class DBTour {
 
     boolean inAddr = false, infileImg = false, indataTtitle = false, infileUrl = false, indataSid = false, inPosx = false, inPosy = false;
     String addr = null, dataTitle = null, fileUrl = null, dataSid = null, posx = null, posy = null;
@@ -47,44 +20,28 @@ public class TourMain extends AppCompatActivity {
     String homepage = null;
     boolean indataContent = false;
     String dataContent =  null;
+    int i = 1;
 
     ArrayList<TourInfo> tourInfoArrayList;
     ArrayList<TourInfo> tourDataList;
 
-    TextView textView;
-    ImageView imageView;
-    int i = 1;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tour_main);
-        setCustomActionbar();
-
-        imageView = findViewById(R.id.tour_picture);
-        accomoRecyclerView = findViewById(R.id.recycler_view);
-        accomoRecyclerView.setHasFixedSize(true);
-        accomoLayoutManager = new LinearLayoutManager(this);
-        accomoRecyclerView.setLayoutManager(accomoLayoutManager);
+    public void load()
+    {
         tourInfoArrayList = new ArrayList<>();
-
         tourDataList = new ArrayList<>();
 
 
 
-        StrictMode.enableDefaults();
         try {
+            StrictMode.enableDefaults();
+
             String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricList?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl + key);
-            Log.i("정보","URL");
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
-            Log.i("정보","크리에이트");
             XmlPullParser parser = parserCreator.newPullParser();
-            Log.i("정보","파서");
             parser.setInput(url.openStream(), null);
-            Log.i("정보","인ㄴ풋");
 
             int parserEvent = parser.getEventType();
 
@@ -149,11 +106,15 @@ public class TourMain extends AppCompatActivity {
                         if (parser.getName().equals("list")) {
                             comeonImage(dataSid);
                             if (i != 1) {
+                                Log.i("정보", "1번");
                                 tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, dataContent, homepage));
                                 tourDataList.add(new TourInfo(dataTitle,fileUrl,posx,posy));
+                                //dbHelper.insert("Tour", dataTitle, addr, null, dataContent, posx, posy, homepage, null, null, null, null, null, fileUrl);
                             } else {
+                                Log.i("정보", "2번");
                                 tourInfoArrayList.add(new TourInfo("http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1", dataTitle, addr, dataContent, homepage));
                                 tourDataList.add(new TourInfo(dataTitle,"http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1",posx,posy));
+                                //dbHelper.insert("Tour", dataTitle, addr, null, dataContent, posx, posy, homepage, null, null, null, null, null, "http://encykorea.aks.ac.kr/Contents/GetImage?id=b96c2aec-02ff-4cf4-b0ad-e560d5dae826&w=260&h=260&fit=w&clip=1");
                                 i = 0;
                             }
                         }
@@ -162,15 +123,21 @@ public class TourMain extends AppCompatActivity {
                 parserEvent = parser.next();
             }
         } catch (Exception e) {
+            Log.i("정보","캐치");
         }
 
-        MyAdapter myAdapter = new MyAdapter(this, tourInfoArrayList);
-        accomoRecyclerView.setAdapter(myAdapter);
-
+        //DB에 데이터 넣기
+        for(int i = 0; i< tourInfoArrayList.size(); i++)
+        {
+            SplashActivity.dbHelper.insert("Tour", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
+            Log.i("투어정보", SplashActivity.dbHelper.getResult());
+        }
     }
 
     private void comeonImage(String dataSid) {
         try {
+            StrictMode.enableDefaults();
+
             String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricFile?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D&dataSid=";
             String data = dataSid;
@@ -210,23 +177,5 @@ public class TourMain extends AppCompatActivity {
             }
         } catch (Exception e) {
         }
-    }
-
-    private void setCustomActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        //set custom view layout
-        View mCustomView = LayoutInflater.from(this).inflate(R.layout.actionbar_main, null);
-        actionBar.setCustomView(mCustomView);
-
-        //set no padding both side
-        Toolbar parent = (Toolbar) mCustomView.getParent();
-        parent.setContentInsetsAbsolute(0, 0);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(mCustomView, params);
     }
 }

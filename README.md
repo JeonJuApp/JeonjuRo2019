@@ -1,2 +1,2 @@
 # JeonjuRo2019
-hello Jeonju
+hello Jeonju.
