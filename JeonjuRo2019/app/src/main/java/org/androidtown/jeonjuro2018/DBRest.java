@@ -575,8 +575,8 @@ public class DBRest {
         //DB에 데이터 넣기
         for(int i = 0; i< foodInfoArrayList.size(); i++)
         {
-            SplashActivity.dbHelper.insert("Food", null, foodInfoArrayList.get(i).getStoreAddr(), null, foodDataList.get(i).getPosx(), foodDataList.get(i).getPosy(), null, foodInfoArrayList.get(i).getStoreName(), foodInfoArrayList.get(i).getMenu(), foodInfoArrayList.get(i).getopenTime(), foodInfoArrayList.get(i).getholiday(), foodInfoArrayList.get(i).getStoreImg());
-            Log.i("음식정보", SplashActivity.dbHelper.getResult());
+            LoginActivity.dbHelper.insert("Food", null, foodInfoArrayList.get(i).getStoreAddr(), null, foodDataList.get(i).getPosx(), foodDataList.get(i).getPosy(), null, foodInfoArrayList.get(i).getStoreName(), foodInfoArrayList.get(i).getMenu(), foodInfoArrayList.get(i).getopenTime(), foodInfoArrayList.get(i).getholiday(), foodInfoArrayList.get(i).getStoreImg());
+            Log.i("음식정보", LoginActivity.dbHelper.getResult());
         }
     }
 }

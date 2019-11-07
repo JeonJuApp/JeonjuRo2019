@@ -129,8 +129,8 @@ public class DBTour {
         //DB에 데이터 넣기
         for(int i = 0; i< tourInfoArrayList.size(); i++)
         {
-            SplashActivity.dbHelper.insert("Tour", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
-            Log.i("투어정보", SplashActivity.dbHelper.getResult());
+            LoginActivity.dbHelper.insert("Tour", tourInfoArrayList.get(i).getTourName(), tourInfoArrayList.get(i).getTourLocation(), tourInfoArrayList.get(i).getDataContent(), tourDataList.get(i).getPosx(), tourDataList.get(i).getPosy(), tourInfoArrayList.get(i).getHomepage(), null, null, null, null, tourInfoArrayList.get(i).getUrl());
+            Log.i("투어정보", LoginActivity.dbHelper.getResult());
         }
     }
 

@@ -29,6 +29,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends FragmentActivity {
+
+    static DBHelper dbHelper;
+
     final int RC_SIGN_IN = 1001; // 로그인 확인여부 코드
     private FirebaseAuth mAuth;
     private SignInButton signInButton; //구글 로그인 버튼
@@ -38,6 +41,17 @@ public class LoginActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
+
+        DBTour one = new DBTour();
+        one.load();
+
+        DBAccomo two = new DBAccomo();
+        two.load();
+
+        DBRest three = new DBRest();
+        three.load();
 
         mAuth = FirebaseAuth.getInstance(); // 인스턴스 생성
 
