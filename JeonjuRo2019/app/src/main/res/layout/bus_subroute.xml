@@ -28,7 +28,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="260dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bus_image_2" />
+                        android:src="@drawable/bus_background" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -62,12 +62,6 @@
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
 
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="10"
-                            android:src="@drawable/ic_swap_horiz_white_24dp" />
 
                         <TextView
                             android:layout_width="0dp"

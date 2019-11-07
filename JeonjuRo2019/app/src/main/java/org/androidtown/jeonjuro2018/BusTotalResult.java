@@ -1,14 +1,33 @@
 package org.androidtown.jeonjuro2018;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Parcelable;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.hd.viewcapture.CaptureManager;
+import com.hd.viewcapture.ViewCapture;
+import com.kakao.kakaolink.KakaoLink;
+import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.odsay.odsayandroidsdk.API;
 import com.odsay.odsayandroidsdk.ODsayData;
 import com.odsay.odsayandroidsdk.ODsayService;
@@ -18,14 +37,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
-public class BusTotalResult extends AppCompatActivity {
+public class BusTotalResult extends AppCompatActivity implements View.OnClickListener {
     String routedetail = "";
+    private static final int MY_PERMISSION_STORAGE = 1111;
     private ODsayService odsayService;
     private JSONObject jsonObject;
+    private CaptureManager.OnSaveResultListener listener;
     int routeSize = 0;
     int dobo = 0;
+    ScrollView scroll;
     int cntService;
     ArrayList<Place> dataList;
     String[] dataTitle =new String[5];
@@ -98,6 +121,8 @@ public class BusTotalResult extends AppCompatActivity {
         stationTime2 = (TextView)findViewById(R.id.stationTime2);
         stationTime3 = (TextView)findViewById(R.id.stationTime3);
         stationTime4 = (TextView)findViewById(R.id.stationTime4);
+
+        scroll = (ScrollView)findViewById(R.id.scrollview);
     }
     private void init() {
         odsayService = ODsayService.init(BusTotalResult.this, getString(R.string.odsay_key));
@@ -281,5 +306,125 @@ public class BusTotalResult extends AppCompatActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(mCustomView, params);
 
+    }
+    //캡쳐하기전 다시 확인
+    void questionCapture() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("일정 캡쳐하실래요?");
+        builder.setMessage("확인을 누르시면 바로 캡쳐됩니다.");
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(), "일정캡쳐", Toast.LENGTH_SHORT).show();
+                        ViewCapture.with(scroll).asJPG().setOnSaveResultListener(listener).save();
+                        //scroll capture 기능
+                    }
+                });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //empty
+            }
+        });
+        builder.show();
+    }
+
+    //카카오 공유기능
+    public void shareKakao() {
+        try {
+            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
+            final KakaoTalkLinkMessageBuilder KakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+
+            KakaoBuilder.addText("카카오링크 테스트입니다");
+
+            kakaoLink.sendMessage(KakaoBuilder, this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 다시 보지 않기 버튼을 만드려면 이 부분에 바로 요청을 하도록 하면 됨 (아래 else{..} 부분 제거)
+            // ActivityCompat.requestPermissions((Activity)mContext, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_CAMERA);
+
+            // 처음 호출시엔 if()안의 부분은 false로 리턴 됨 -> else{..}의 요청으로 넘어감
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("알림")
+                        .setMessage("저장소 권한이 거부되어 있습니다. 해당 권한을 허용해주세요.")
+                        .setNeutralButton("설정", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                intent.setData(Uri.parse("package:" + getPackageName()));
+                                startActivity(intent);
+                            }
+                        })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        })
+                        .setCancelable(false)
+                        .create()
+                        .show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_STORAGE);
+            }
+        }
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.shareButton:
+                shareKakao();
+                Toast.makeText(this, "공유기능", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.cameraButton:
+                checkPermission();
+                questionCapture();
+                break;
+            case R.id.addButton:
+             /*   Intent intent = new Intent(BusTotalResult.this, addDialog.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("oData", (ArrayList<? extends Parcelable>) oData);
+                bundle.putString("totalTime", totalTime.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);*/
+                break;
+
+        }
+    }
+
+ /*   private void fileshare(int position) {
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        //   intent.setAction(Intent.ACTION_SEND);
+        intent.setType("application/*");
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".provider",
+                new File(Environment.getExternalStorageDirectory().getAbsolutePath() + bookfolderName + folderAndFileList.get(position).getName())));
+        Intent chooser = Intent.createChooser(intent, "공유하기");
+        this.startActivity(chooser);
+    }*/
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSION_STORAGE:
+                for (int i = 0; i < grantResults.length; i++) {
+                    // grantResults[] : 허용된 권한은 0, 거부한 권한은 -1
+                    if (grantResults[i] < 0) {
+                        //  Toast.makeText(MainActivity.this, "해당 권한을 활성화 하셔야 합니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                // 허용했다면 이 부분에서..
+
+                break;
+        }
     }
 }
