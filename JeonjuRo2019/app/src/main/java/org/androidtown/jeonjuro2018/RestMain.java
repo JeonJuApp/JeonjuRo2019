@@ -1,9 +1,6 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Intent;
-
-import android.graphics.Bitmap;
-
 import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import android.widget.ImageView;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import java.net.URL;
@@ -23,7 +18,6 @@ import java.util.ArrayList;
 public class RestMain extends AppCompatActivity {
     RecyclerView restRecyclerView;
     RecyclerView.LayoutManager restLayoutManager;
-
 
     boolean storeName = false, storeAddr = false, storeMenu = false, storeImg = false, storeOpen = false, b_holiday = false, b_opentime = false;
     String storeNm = null, storeAd = null, Menu = null, ImgURL = null, storeop = null, holiday = null, opentime = null;
@@ -34,7 +28,6 @@ public class RestMain extends AppCompatActivity {
         setContentView(R.layout.activity_rest_main);
         setCustomActionbar();
 
-
         StrictMode.enableDefaults();
 
         restRecyclerView  = findViewById(R.id.recycler_view);
@@ -42,11 +35,7 @@ public class RestMain extends AppCompatActivity {
         restLayoutManager = new LinearLayoutManager(this);
         restRecyclerView.setLayoutManager(restLayoutManager);
 
-        ArrayList<TourInfo> tourInfoArrayList = new ArrayList<>();
-
         ArrayList<FoodInfo> foodInfoArrayList = new ArrayList<>();
-        FoodInfo food = null;
-
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
@@ -528,7 +517,6 @@ public class RestMain extends AppCompatActivity {
             }
         } catch (Exception e) {
         }
-
 
         View.OnClickListener mListener = new View.OnClickListener() {
             @Override

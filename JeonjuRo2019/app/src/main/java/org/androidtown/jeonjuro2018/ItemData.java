@@ -56,30 +56,6 @@ public class ItemData implements Parcelable {
         dest.writeString(listBusTime);
     }
 
-    public String getListBus() {
-        return listBus;
-    }
-
-    public String getListBus2() {
-        return listBus2;
-    }
-
-    public String getListBusStopNum() {
-        return listBusStopNum;
-    }
-
-    public String getListBusTime() {
-        return listBusTime;
-    }
-
-    public String getListTitle() {
-        return listTitle;
-    }
-
-    public String getListTitle2() {
-        return listTitle2;
-    }
-
     public void setListBus(String listBus) {
         this.listBus = listBus;
     }

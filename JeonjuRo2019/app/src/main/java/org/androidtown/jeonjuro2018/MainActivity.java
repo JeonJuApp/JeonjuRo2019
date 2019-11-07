@@ -1,38 +1,22 @@
 package org.androidtown.jeonjuro2018;
-
-
-import android.os.Handler;
-
 import android.support.v4.app.FragmentTransaction;
-
-
 import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
-
 import android.view.LayoutInflater;
 import android.view.View;
-
-
 import android.widget.ImageView;
-
 import android.widget.RadioButton;
 import android.support.v7.widget.Toolbar;
-
 import android.widget.TextView;
 
-import java.util.Stack;
-
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView textView;
-    ImageView imageView;
-    AppCompatDialog progressDialog;
 
     private final int FRAGMENT1 = 1;
     private final int FRAGMENT2 = 2;
+    private final int FRAGMENT3 = 3;
     RadioButton homeTopbar, schedule_topbar, custom_topbar;
 
     @Override
@@ -50,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         homeTopbar.setOnClickListener(this);
         schedule_topbar.setOnClickListener(this);
         custom_topbar.setOnClickListener(this);
-
 
         callFragment(FRAGMENT1);
     }
@@ -84,8 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 callFragment(FRAGMENT2);
                 break;
             case R.id.schedule_topbar:
-                startActivity(new Intent(MainActivity.this, scheduleMain.class));
-                // startProgress();
+                callFragment(FRAGMENT3);
                 break;
         }
     }
@@ -115,6 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;
+            case 3:
+                scheduleMain fragment3= new scheduleMain();
+                transaction.replace(R.id.fragment_container, fragment3);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+
         }
     }
 }

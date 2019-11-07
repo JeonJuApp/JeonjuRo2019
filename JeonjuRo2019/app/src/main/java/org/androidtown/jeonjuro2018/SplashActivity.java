@@ -12,8 +12,6 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
-
         startLoading();
     }
 
@@ -24,6 +22,6 @@ public class SplashActivity extends Activity {
             public void run() {
                 finish();
             }
-        }, 10000);
+        }, 2000);
     }
 }

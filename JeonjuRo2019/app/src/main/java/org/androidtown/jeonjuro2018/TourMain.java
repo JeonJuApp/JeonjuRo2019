@@ -1,15 +1,7 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.StrictMode;
-import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,20 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.channels.Channel;
 import java.util.ArrayList;
 
 public class TourMain extends AppCompatActivity {
@@ -42,7 +25,6 @@ public class TourMain extends AppCompatActivity {
     boolean inAddr = false, infileImg = false, indataTtitle = false, infileUrl = false, indataSid = false, inPosx = false, inPosy = false;
     String addr = null, dataTitle = null, fileUrl = null, dataSid = null, posx = null, posy = null;
 
-    Context mContext;
     boolean inHomepage = false;
     String homepage = null;
     boolean indataContent = false;
@@ -51,7 +33,6 @@ public class TourMain extends AppCompatActivity {
     ArrayList<TourInfo> tourInfoArrayList;
     ArrayList<TourInfo> tourDataList;
 
-    TextView textView;
     ImageView imageView;
     int i = 1;
 
@@ -69,8 +50,6 @@ public class TourMain extends AppCompatActivity {
         tourInfoArrayList = new ArrayList<>();
 
         tourDataList = new ArrayList<>();
-
-
 
         StrictMode.enableDefaults();
         try {

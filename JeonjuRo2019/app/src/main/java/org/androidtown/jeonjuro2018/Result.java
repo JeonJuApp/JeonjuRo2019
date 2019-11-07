@@ -6,20 +6,13 @@ import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -35,7 +28,6 @@ public class Result extends AppCompatActivity {
     String dataSid = null, dataTitle = null, fileUrl = null;
 
     ArrayList<TourInfo> tourDataList;
-
 
     GridView gridView;
     GridViewAdapter adapter;

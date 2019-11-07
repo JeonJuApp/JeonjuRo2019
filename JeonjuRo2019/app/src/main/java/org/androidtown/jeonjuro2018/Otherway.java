@@ -6,8 +6,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
@@ -15,15 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Otherway extends AppCompatActivity {
@@ -44,10 +38,8 @@ public class Otherway extends AppCompatActivity {
         TextView textView = (TextView)findViewById(R.id.textView);
         TextView textView3 = (TextView)findViewById(R.id.textView3);
 
-
         Random rand = new Random();
         randomnum = rand.nextInt(100)+1;
-
 
         type = getIntent().getStringExtra("Type");
         textView.setText(type +"타입");
