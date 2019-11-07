@@ -38,8 +38,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 .into(((MyViewHolder) holder).tourPicture);
         myViewHolder.tourName.setText(tourInfoArrayList.get(position).tourName);
         myViewHolder.tourLocation.setText(tourInfoArrayList.get(position).tourLocation);
-        myViewHolder.tourContent.setText(tourInfoArrayList.get(position).dataContent);
-        myViewHolder.homepage.setText(tourInfoArrayList.get(position).homepage);
         myViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

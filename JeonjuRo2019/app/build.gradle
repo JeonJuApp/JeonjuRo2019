@@ -46,6 +46,8 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     //sharedPreference 객체 저장
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+
 
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     testImplementation 'junit:junit:4.12'
