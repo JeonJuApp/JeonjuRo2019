@@ -6,15 +6,40 @@
     android:background="@color/bg"
     tools:context="org.androidtown.jeonjuro2018.Result">
 
+
+    <ImageView
+        android:layout_width="69dp"
+        android:layout_height="42dp"
+        android:layout_margin="40dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/cloud_icon2" />
+
+    <ImageView
+        android:id="@+id/ch"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/together_icon">
+
+    </ImageView>
+    <ImageView
+        android:layout_width="69dp"
+        android:layout_height="42dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/cloud_icon1" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@+id/ch"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/binggraebold"
-        android:text="두근두근 추천일정~"
+        android:text="두근두근 추천일정!"
         android:textSize="23dp" />
 
     <Button
@@ -54,6 +79,45 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="100dp">
 
+    </GridView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="117dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/cloud_icon1" />
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="18dp"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="55dp"
+            android:src="@drawable/cloud_icon2" />
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="37dp"
+            android:src="@drawable/cloud_icon2" />
+
+        <ImageView
+            android:layout_width="249dp"
+            android:layout_height="114dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/hanok" />
+
+    </RelativeLayout>
 </RelativeLayout>

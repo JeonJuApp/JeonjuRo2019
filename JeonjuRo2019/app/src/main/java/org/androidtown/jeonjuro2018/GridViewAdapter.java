@@ -1,20 +1,10 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
-/**
- * Created by starf on 2018-11-03.
- */
 
 public class GridViewAdapter extends BaseAdapter {
     ArrayList<Place> place;

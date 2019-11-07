@@ -39,7 +39,7 @@ public class RestMain extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl+key);//검색 URL부분
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
@@ -120,7 +120,7 @@ public class RestMain extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%84%B1%EB%AF%B8%EB%8B%B9";
             URL url = new URL(rl+key);//검색 URL부분
 
@@ -281,7 +281,7 @@ public class RestMain extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EC%B6%94%EC%96%B4%ED%83%95";
             URL url = new URL(rl+key);//검색 URL부분
 
