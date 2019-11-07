@@ -36,11 +36,12 @@ import com.odsay.odsayandroidsdk.OnResultCallbackListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class BusTotalResult extends AppCompatActivity implements View.OnClickListener {
+public class BusTotalResult extends AppCompatActivity implements View.OnClickListener, CaptureManager.OnSaveResultListener{
     String routedetail = "";
     private static final int MY_PERMISSION_STORAGE = 1111;
     private ODsayService odsayService;
@@ -57,7 +58,11 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
     TextView stationCnt1, stationCnt2, stationCnt3, stationCnt4;
     TextView stationBus1, stationBus2, stationBus3, stationBus4;
     TextView stationTime1,stationTime2, stationTime3, stationTime4;
+    TextView stationStart1,stationStart2, stationStart3, stationStart4;
+    TextView stationDes1, stationDes2, stationDes3, stationDes4;
+    TextView stationMeter1,stationMeter2, stationMeter3, stationMeter4;
     ArrayList<String> busResult = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +88,7 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         stationTitle3.setText(dataTitle[2] +" - " + dataTitle[3]);
         stationTitle4.setText(dataTitle[3] +" - " + dataTitle[4]);
 
-        stationTime1.setText(busResult.get(0));
+      /*  stationTime1.setText(busResult.get(0));
         stationCnt1.setText(busResult.get(1));
         stationBus1.setText(busResult.get(2));
 
@@ -97,8 +102,35 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
 
         stationTime4.setText(busResult.get(9));
         stationCnt4.setText(busResult.get(10));
-        stationBus4.setText(busResult.get(11));
+        stationBus4.setText(busResult.get(11));*/
 
+        stationTime1.setText(busResult.get(0));
+        stationCnt1.setText(busResult.get(1));
+        stationBus1.setText(busResult.get(2));
+        stationStart1.setText(busResult.get(3));
+        stationDes1.setText(busResult.get(4));
+        stationMeter1.setText(busResult.get(5));
+
+        stationTime2.setText(busResult.get(6));
+        stationCnt2.setText(busResult.get(7));
+        stationBus2.setText(busResult.get(8));
+        stationStart2.setText(busResult.get(9));
+        stationDes2.setText(busResult.get(10));
+        stationMeter2.setText(busResult.get(11));
+
+        stationTime3.setText(busResult.get(12));
+        stationCnt3.setText(busResult.get(13));
+        stationBus3.setText(busResult.get(14));
+        stationStart3.setText(busResult.get(15));
+        stationDes3.setText(busResult.get(16));
+        stationMeter3.setText(busResult.get(17));
+
+        stationTime4.setText(busResult.get(18));
+        stationCnt4.setText(busResult.get(19));
+        stationBus4.setText(busResult.get(20));
+        stationStart4.setText(busResult.get(21));
+        stationDes4.setText(busResult.get(22));
+        stationMeter4.setText(busResult.get(23));
 
     }
     private  void callviewId(){
@@ -121,6 +153,22 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         stationTime2 = (TextView)findViewById(R.id.stationTime2);
         stationTime3 = (TextView)findViewById(R.id.stationTime3);
         stationTime4 = (TextView)findViewById(R.id.stationTime4);
+
+        stationStart1 = (TextView)findViewById(R.id.stationStart1);
+        stationStart2 = (TextView)findViewById(R.id.stationStart2);
+        stationStart3 = (TextView)findViewById(R.id.stationStart3);
+        stationStart4 = (TextView)findViewById(R.id.stationStart4);
+
+        stationDes1 = (TextView)findViewById(R.id.stationDes1);
+        stationDes2 = (TextView)findViewById(R.id.stationDes2);
+        stationDes3 = (TextView)findViewById(R.id.stationDes3);
+        stationDes4 = (TextView)findViewById(R.id.stationDes4);
+
+        stationMeter1 = (TextView)findViewById(R.id.stationMeter1);
+        stationMeter2 = (TextView)findViewById(R.id.stationMeter2);
+        stationMeter3 = (TextView)findViewById(R.id.stationMeter3);
+        stationMeter4 = (TextView)findViewById(R.id.stationMeter4);
+
 
         scroll = (ScrollView)findViewById(R.id.scrollview);
     }
@@ -151,14 +199,9 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
 
                 if( pathType == 2){
                     JSONObject infoOBJ = pathArrayDetailOBJ.getJSONObject("info");
-                    int totalWalk = infoOBJ.getInt("totalWalk"); // 총 도보 이동거리
-                    int payment = infoOBJ.getInt("payment"); // 요금
                     int totalTime = infoOBJ.getInt("totalTime"); // 소요시간
                     busResult.add(Integer.toString(totalTime)+"분 소요");
                     Log.i("정보 : 토탈", totalTime+"");
-                    String mapObj = infoOBJ.getString("mapObj"); // 경로 디테일 조회 아이디
-                    String firstStartStation = infoOBJ.getString("firstStartStation"); // 출발 정거장
-                    String lastEndStation = infoOBJ.getString("lastEndStation"); // 도착 정거장
 
                     // 세부경로 디테일
                     JSONArray subPathArray = pathArrayDetailOBJ.getJSONArray("subPath");
@@ -212,6 +255,9 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
                                 String busroute = " [" + busNo + "] 번 탑승 ";
 
                                 busResult.add(busNo.substring(0,busNo.indexOf("("))+"번 탑승");
+                                busResult.add("출발 정류장: "+ startName);
+                                busResult.add("도착 정류장: "+endName);
+
                                 routedetail += busroute;
                                 busID = laneObj.getJSONObject(0).getInt("busID"); // 버스정류장 id
 
@@ -220,14 +266,15 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
                                 int stationsObjObjCount = stationsObj.length();
 
 
-                                for (int c = 0; c < stationsObjObjCount; c++) {
+                              /*  for (int c = 0; c < stationsObjObjCount; c++) {
                                     routedetail += "거칠 곳\n";
                                     int stationIndex = stationsObj.getJSONObject(c).getInt("index");
                                     String stationName = stationsObj.getJSONObject(c).getString("stationName");
                                     routedetail += stationIndex + " " + stationName + "\n";
-                                }
+                                }*/
                              //   int distance = subPathOBJ.getInt("distance"); // 이동길이
                                 routedetail += "\n( " + cur.distance + "m 이동. ";
+                                busResult.add(cur.distance+"m");
                                // int sectionTime = subPathOBJ.getInt("sectionTime"); // 이동시간
                                 routedetail += cur.sectionTime + "분 소요 )\n";
                                 totalTime += cur.sectionTime;
@@ -330,21 +377,6 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         builder.show();
     }
 
-    //카카오 공유기능
-    public void shareKakao() {
-        try {
-            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
-            final KakaoTalkLinkMessageBuilder KakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-
-            KakaoBuilder.addText("카카오링크 테스트입니다");
-
-            kakaoLink.sendMessage(KakaoBuilder, this);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // 다시 보지 않기 버튼을 만드려면 이 부분에 바로 요청을 하도록 하면 됨 (아래 else{..} 부분 제거)
@@ -381,8 +413,10 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.shareButton:
-                shareKakao();
-                Toast.makeText(this, "공유기능", Toast.LENGTH_SHORT).show();
+                checkPermission();
+                fileshare();
+               // File deleteFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/jeonju/" + "temp.jpg");
+               // deleteFile.delete();
                 break;
             case R.id.cameraButton:
                 checkPermission();
@@ -400,17 +434,23 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         }
     }
 
- /*   private void fileshare(int position) {
+    private void fileshare() {
+        ViewCapture.with(scroll).asJPG().setDirectoryName("jeonju").setFileName("temp").setOnSaveResultListener(listener).save();
         Intent intent = new Intent(android.content.Intent.ACTION_SEND);
         //   intent.setAction(Intent.ACTION_SEND);
-        intent.setType("application/*");
+        intent.setType("image/*");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".provider",
-                new File(Environment.getExternalStorageDirectory().getAbsolutePath() + bookfolderName + folderAndFileList.get(position).getName())));
-        Intent chooser = Intent.createChooser(intent, "공유하기");
+                new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/jeonju/" + "temp.jpg")));
+         Intent chooser = Intent.createChooser(intent, "공유하기");
         this.startActivity(chooser);
-    }*/
-
+    }
+    @Override
+    public void onSaveResult(boolean isSaved, String path, Uri uri) {
+        String logStr = "save result :" + isSaved + "\n" + path + "\n" + uri;
+        Log.d("tag", logStr);
+        Toast.makeText(this, logStr, Toast.LENGTH_SHORT).show();
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {

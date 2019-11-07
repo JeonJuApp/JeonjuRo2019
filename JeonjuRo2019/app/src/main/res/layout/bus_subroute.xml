@@ -38,7 +38,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/print_clearly"
-                        android:text="Select your bus!"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
@@ -57,7 +57,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="45"
                             android:fontFamily="@font/gotham"
-                            android:text="Pune"
+                            android:text=""
                             android:textAlignment="center"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
@@ -68,7 +68,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="45"
                             android:fontFamily="@font/gotham"
-                            android:text="Mumbai"
+                            android:text=""
                             android:textAlignment="center"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
@@ -83,7 +83,7 @@
                         android:layout_below="@+id/linearLayout"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/print_clearly"
-                        android:text="12th - Feb - 2019 | Tuesday"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
@@ -121,7 +121,7 @@
                                     android:fontFamily="@font/calibri"
                                     android:text="만정식 - 수라온"
                                     android:textStyle="bold"
-                                    android:textSize="19sp"
+                                    android:textSize="17sp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="6dp"
                                     android:textColor="#4b4b4b"
@@ -152,7 +152,7 @@
                                     android:text="103번 탑승"
                                     android:layout_marginTop="6dp"
                                     android:textAlignment="textEnd"
-                                    android:textSize="23sp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:textColor="#f5a622"
                                     />
@@ -191,6 +191,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                        <ListView
+                            android:id="@+id/listView"
+                            android:layout_width="match_parent"
+                            android:layout_height="750dp"
+                            android:divider="#ffffff"
+                            android:dividerHeight="0px">
+
+                        </ListView>
 
                     </LinearLayout>
 
