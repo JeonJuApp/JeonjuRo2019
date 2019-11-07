@@ -39,17 +39,6 @@ public class LoginActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
-
-        DBTour one = new DBTour();
-        one.load();
-
-        DBAccomo two = new DBAccomo();
-        two.load();
-
-        DBRest three = new DBRest();
-        three.load();
-
         mAuth = FirebaseAuth.getInstance(); // 인스턴스 생성
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -72,6 +61,17 @@ public class LoginActivity extends FragmentActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
+
+                DBTour one = new DBTour();
+                one.load();
+
+                DBAccomo two = new DBAccomo();
+                two.load();
+
+                DBRest three = new DBRest();
+                three.load();
+
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
