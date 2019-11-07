@@ -15,10 +15,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-/**
- * Created by starf on 2018-11-08.
- */
-
 public class FoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
     ArrayList<FoodInfo> foodInfoArrayList;

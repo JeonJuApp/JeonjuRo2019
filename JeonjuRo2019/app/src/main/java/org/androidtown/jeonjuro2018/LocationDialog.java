@@ -1,32 +1,15 @@
 package org.androidtown.jeonjuro2018;
 
-
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-
-import android.provider.ContactsContract;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import android.widget.Toast;
-import java.io.FileNotFoundException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -61,10 +44,7 @@ public class LocationDialog extends AppCompatActivity {
         location.setText(locat);
         description.setText(des);
 
-
-
         Linkify.addLinks(location, Linkify.WEB_URLS);
-
 
         Button okBtn = (Button) findViewById(R.id.okBtn);
         okBtn.setOnClickListener(new View.OnClickListener() {

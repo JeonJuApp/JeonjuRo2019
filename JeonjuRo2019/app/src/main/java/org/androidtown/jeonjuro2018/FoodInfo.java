@@ -3,10 +3,6 @@ package org.androidtown.jeonjuro2018;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by starf on 2018-11-08.
- */
-
 public class FoodInfo implements Parcelable {
     public String storeImg;
     public String storeName;

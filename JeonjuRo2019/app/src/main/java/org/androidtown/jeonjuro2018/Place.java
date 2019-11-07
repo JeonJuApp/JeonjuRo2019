@@ -3,10 +3,6 @@ package org.androidtown.jeonjuro2018;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by starf on 2018-11-03.
- */
-
 public class Place implements Parcelable{
     private  int type; //1 - 맛집 , 2 - 숙소 , 3 - 문화재
     private  String name;
@@ -62,15 +58,9 @@ public class Place implements Parcelable{
 
     public int getType() {return type;}
 
-    public void setType() {this.type = type;}
-
     public String getPosx() {return posx;}
 
-    public void setPosx() {this.posx = posx;}
-
     public String getPosy() {return posy;}
-
-    public void setPosy() {this.posy = posy;}
 
     public String getName() {
         return name;

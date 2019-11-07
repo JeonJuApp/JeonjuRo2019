@@ -6,8 +6,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
@@ -15,15 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Random;
 
 public class Otherway extends AppCompatActivity {
@@ -33,46 +33,58 @@ public class Otherway extends AppCompatActivity {
     AppCompatDialog progressDialog;
     int randomnum;
     String type;
+    String loginID;
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+    FirebaseUser user;
+    public FirebaseAuth mAuth; //Firebase로 로그인한 사용자 정보 알기 위해
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otherway);
         setCustomActionbar();
 
+        mAuth = FirebaseAuth.getInstance(); // 인증
+        user = mAuth.getCurrentUser(); //현재 로그인한 유저
+
+        String tr = user.getEmail();
+        int get = tr.indexOf("@");
+        tr = tr.substring(0, get);
+
         Button button = (Button)findViewById(R.id.button);
         Button button2 = (Button)findViewById(R.id.button2);
         TextView textView = (TextView)findViewById(R.id.textView);
         TextView textView3 = (TextView)findViewById(R.id.textView3);
 
-
         Random rand = new Random();
         randomnum = rand.nextInt(100)+1;
-
 
         type = getIntent().getStringExtra("Type");
         textView.setText(type +"타입");
 
         if(type.equals("A")){
-            textView3.setText("부지런한 최찰칵님은 관람하고 사진찍기를 좋아하는 여행 스타일을 가지고 계시는군요! 그런 최찰칵님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("부지런한 " + tr +"님은 관람하고 사진찍기를 좋아하는 여행 스타일을 가지고 계시는군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
 
         }
         else if (type.equals("B")) {
-            textView3.setText("여유로운 여행을 즐기는 최찰칵님은 관람하고 사진찍기를 좋아하시는 군요! 그런 최찰칵님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("여유로운 여행을 즐기는 " + tr +"님은 관람하고 사진찍기를 좋아하시는 군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
 
         }
         else if (type.equals("C")) {
-            textView3.setText("부지런한 김비빔님은 맛집을 중심으로 여행 다니는 것을 좋아하시는군요! 그런 김비빔님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("부지런한 " + tr + "님은 맛집을 중심으로 여행 다니는 것을 좋아하시는군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
 
         }
         else if (type.equals("D")) {
-            textView3.setText("여유로운 여행을 즐기는 김비빔님은 맛집들을 찾아다니는 것을 좋아하시는군요! 그런 김비빔님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("여유로운 여행을 즐기는 " + tr + "님은 맛집들을 찾아다니는 것을 좋아하시는군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
         }
         else if (type.equals("E")) {
-            textView3.setText("부지런한 이스릴님은 여러 액티비티를 즐기는 여행을 원하시는군요! 그런 이스릴님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("부지런한 " + tr + "님은 여러 액티비티를 즐기는 여행을 원하시는군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
 
         }
         else {
-            textView3.setText("여유로운 여행을 즐기는 이스릴님은 액티비티를 좋아하시는군요! 그런 이스릴님께 아래와 같은 여행경로를 추천드립니다!");
+            textView3.setText("여유로운 여행을 즐기는 " + tr + "님은 액티비티를 좋아하시는군요! 그런 " + tr +"님께 아래와 같은 여행경로를 추천드립니다!");
         }
 
         button.setOnClickListener(new View.OnClickListener() {

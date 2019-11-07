@@ -16,11 +16,13 @@ android {
             //프로가드 활성화
             minifyEnabled false
             //기본 프로가드 설정
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 dependencies {
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.firebaseui:firebase-ui-auth:4.2.1'
     implementation "com.android.support:recyclerview-v7:27.1.1"
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
@@ -43,7 +45,9 @@ dependencies {
     //adpater
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     //sharedPreference 객체 저장
-    implementation 'com.google.code.gson:gson:2.4'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+
 
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     testImplementation 'junit:junit:4.12'
@@ -51,3 +55,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(path: ':SDK_release_v2.0.0')
 }
+apply plugin: 'com.google.gms.google-services'

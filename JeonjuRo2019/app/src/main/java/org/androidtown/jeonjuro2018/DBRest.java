@@ -1,41 +1,27 @@
 package org.androidtown.jeonjuro2018;
 
-import android.content.Intent;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.util.Log;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.net.URL;
 import java.util.ArrayList;
 
-public class RestMain extends AppCompatActivity {
-    RecyclerView restRecyclerView;
-    RecyclerView.LayoutManager restLayoutManager;
+public class DBRest {
 
-    boolean storeName = false, storeAddr = false, storeMenu = false, storeImg = false, storeOpen = false, b_holiday = false, b_opentime = false;
-    String storeNm = null, storeAd = null, Menu = null, ImgURL = null, storeop = null, holiday = null, opentime = null;
+    boolean storeName = false, storeAddr = false, storeMenu = false, storeImg = false, storeOpen = false, b_holiday = false, b_opentime = false, inPosx = false, inPosy = false;
+    String storeNm = null, storeAd = null, Menu = null, ImgURL = null, storeop = null, holiday = null, opentime = null, posx = null, posy = null;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rest_main);
-        setCustomActionbar();
+    ArrayList<FoodInfo> foodInfoArrayList;
+    ArrayList<TourInfo> foodDataList;
 
+    public void load()
+    {
+        foodInfoArrayList = new ArrayList<>();
+        foodDataList = new ArrayList<>();
         StrictMode.enableDefaults();
-
-        restRecyclerView  = findViewById(R.id.recycler_view);
-        restRecyclerView.setHasFixedSize(true);
-        restLayoutManager = new LinearLayoutManager(this);
-        restRecyclerView.setLayoutManager(restLayoutManager);
-
-        ArrayList<FoodInfo> foodInfoArrayList = new ArrayList<>();
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
@@ -73,6 +59,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -109,6 +99,7 @@ public class RestMain extends AppCompatActivity {
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -121,7 +112,6 @@ public class RestMain extends AppCompatActivity {
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
-            String data = "&keyword=%EC%84%B1%EB%AF%B8%EB%8B%B9";
             URL url = new URL(rl+key);//검색 URL부분
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
@@ -155,6 +145,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -187,10 +181,19 @@ public class RestMain extends AppCompatActivity {
                             opentime = parser.getText();
                             b_opentime = false;
                         }
+                        if (inPosx) {
+                        posx = parser.getText();
+                        inPosx = false;
+                        }
+                        if (inPosy) {
+                            posy = parser.getText();
+                            inPosy = false;
+                        }
                         break;
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -234,6 +237,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -266,10 +273,19 @@ public class RestMain extends AppCompatActivity {
                             opentime = parser.getText();
                             b_opentime = false;
                         }
+                        if (inPosx) {
+                            posx = parser.getText();
+                            inPosx = false;
+                        }
+                        if (inPosy) {
+                            posy = parser.getText();
+                            inPosy = false;
+                        }
                         break;
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -282,7 +298,6 @@ public class RestMain extends AppCompatActivity {
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
             String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
-            String data = "&keyword=%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EC%B6%94%EC%96%B4%ED%83%95";
             URL url = new URL(rl+key);//검색 URL부분
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
@@ -316,6 +331,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -348,10 +367,19 @@ public class RestMain extends AppCompatActivity {
                             opentime = parser.getText();
                             b_opentime = false;
                         }
+                        if (inPosx) {
+                            posx = parser.getText();
+                            inPosx = false;
+                        }
+                        if (inPosy) {
+                            posy = parser.getText();
+                            inPosy = false;
+                        }
                         break;
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -395,6 +423,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -427,10 +459,19 @@ public class RestMain extends AppCompatActivity {
                             opentime = parser.getText();
                             b_opentime = false;
                         }
+                        if (inPosx) {
+                            posx = parser.getText();
+                            inPosx = false;
+                        }
+                        if (inPosy) {
+                            posy = parser.getText();
+                            inPosy = false;
+                        }
                         break;
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -474,6 +515,10 @@ public class RestMain extends AppCompatActivity {
                         if (parser.getName().equals("openTime")) {
                             b_opentime = true;
                         }
+                        if (parser.getName().equals("posx"))
+                            inPosx = true;
+                        if (parser.getName().equals("posy"))
+                            inPosy = true;
                         break;
                     case XmlPullParser.TEXT://parser가 내용에 접근했을때
                         if (storeName) { //isTitle이 true일 때 태그의 내용을 저장.
@@ -506,10 +551,19 @@ public class RestMain extends AppCompatActivity {
                             opentime = parser.getText();
                             b_opentime = false;
                         }
+                        if (inPosx) {
+                            posx = parser.getText();
+                            inPosx = false;
+                        }
+                        if (inPosy) {
+                            posy = parser.getText();
+                            inPosy = false;
+                        }
                         break;
                     case XmlPullParser.END_TAG:
                         if (parser.getName().equals("list")) {
                             foodInfoArrayList.add(new FoodInfo(ImgURL, storeNm, storeAd, Menu,storeop,holiday,opentime));
+                            foodDataList.add(new TourInfo(storeNm,ImgURL,posx,posy));
                         }
                         break;
                 }
@@ -518,37 +572,11 @@ public class RestMain extends AppCompatActivity {
         } catch (Exception e) {
         }
 
-        View.OnClickListener mListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-             /*   Intent intent = new Intent(RestMain.this, LocationDialog.class);
-                startActivity(intent);*/
-            }
-        };
-        FoodAdapter myAdapter = new FoodAdapter(this,foodInfoArrayList,mListener);
-        restRecyclerView.setAdapter(myAdapter);
-
+        //DB에 데이터 넣기
+        for(int i = 0; i< foodInfoArrayList.size(); i++)
+        {
+            LoginActivity.dbHelper.insert("Food", null, foodInfoArrayList.get(i).getStoreAddr(), null, foodDataList.get(i).getPosx(), foodDataList.get(i).getPosy(), null, foodInfoArrayList.get(i).getStoreName(), foodInfoArrayList.get(i).getMenu(), foodInfoArrayList.get(i).getopenTime(), foodInfoArrayList.get(i).getholiday(), foodInfoArrayList.get(i).getStoreImg());
+            Log.i("음식정보", LoginActivity.dbHelper.getResult());
+        }
     }
-
-    private void setCustomActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        //set custom view layout
-        View mCustomView = LayoutInflater.from(this).inflate(R.layout.actionbar_main,null);
-        actionBar.setCustomView(mCustomView);
-
-        //set no padding both side
-        Toolbar parent = (Toolbar)mCustomView.getParent();
-        parent.setContentInsetsAbsolute(0,0);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(mCustomView,params);
-    }
-
 }
-
-
