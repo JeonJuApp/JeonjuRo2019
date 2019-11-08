@@ -27,8 +27,6 @@ import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends FragmentActivity {
 
-    static DBHelper dbHelper;
-
     final int RC_SIGN_IN = 1001; // 로그인 확인여부 코드
     private FirebaseAuth mAuth;
     private SignInButton signInButton; //구글 로그인 버튼
@@ -61,17 +59,6 @@ public class LoginActivity extends FragmentActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbHelper = new DBHelper(getApplicationContext(), "INFO.db", null, 1);
-
-                DBTour one = new DBTour();
-                one.load();
-
-                DBAccomo two = new DBAccomo();
-                two.load();
-
-                DBRest three = new DBRest();
-                three.load();
-
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
