@@ -70,23 +70,14 @@ public class addDialog extends AppCompatActivity {
                 Log.i("정보2_위치", bundle_itemData.getBusResult()+"");
                 ItemData itemData = new ItemData(title, bundle_itemData.getBusResult(), bundle_itemData.getBusstop_title());
                 mRootRef.push().setValue(itemData);
+
                 Intent intent = new Intent(addDialog.this, MainActivity.class);
                 Bundle myBundle = new Bundle();
                 myBundle.putParcelable("data", itemData);
-
+                intent.putExtras(myBundle);
                 startActivity(intent);
-//                scheduleMain fragment = new scheduleMain();
-//                fragment.setArguments(myBundle);
-//                transaction.replace(fragment_container, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-                //scheduleMain fragment = new scheduleMain()
-                //Intent intent = new Intent(addDialog.this, scheduleMain.class);
-                //Bundle myBundle = new Bundle();
-                //myBundle.putParcelable("data", itemData);
-                //fragment.setArguments(myBundle);
-                //startActivity(intent);
-                finish();
+
+
             }
         });
     }
