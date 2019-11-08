@@ -2,7 +2,9 @@ package org.androidtown.jeonjuro2019;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 .load(data.getUrl()).asBitmap()
                 .fitCenter()
                 .into(((MyViewHolder) holder).tourPicture);
+        Log.i("숙박", "들어옴");
+        Log.i("숙박", tourInfoArrayList.get(position).tourName+"");
         myViewHolder.tourName.setText(tourInfoArrayList.get(position).tourName);
         myViewHolder.tourLocation.setText(tourInfoArrayList.get(position).tourLocation);
         myViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
