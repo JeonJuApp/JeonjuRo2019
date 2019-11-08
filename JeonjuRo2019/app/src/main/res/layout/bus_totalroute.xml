@@ -88,7 +88,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="50"
+                            android:layout_weight="65"
                             android:orientation="vertical">
 
                             <TextView
@@ -96,7 +96,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/binggrae"
-                                android:text="만정식 >> 수라온"
+                                android:text="만정식 - 수라온"
                                 android:textStyle="bold"
                                 android:textSize="17sp"
                                 android:layout_marginTop="8dp"
@@ -111,13 +111,28 @@
                                 android:text="15정거장"
                                 android:textColor="#8a8a8a"
                                 />
-
+                            <TextView
+                                android:id = "@+id/stationStart1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="50"
+                            android:layout_weight="35"
                             android:gravity="center"
                             android:orientation="vertical">
                             <TextView
@@ -140,6 +155,16 @@
                                 android:text="15분 소요"
                                 android:textAlignment="textEnd"
                                 android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
                                 android:layout_marginBottom="6dp"
                                 android:textColor="#b3b3b3"
                                 />
@@ -191,7 +216,22 @@
                                 android:text="15정거장"
                                 android:textColor="#8a8a8a"
                                 />
-
+                            <TextView
+                                android:id = "@+id/stationStart2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
 
                         </LinearLayout>
 
@@ -221,6 +261,16 @@
                                 android:text="15분 소요"
                                 android:textAlignment="textEnd"
                                 android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
                                 android:layout_marginBottom="6dp"
                                 android:textColor="#b3b3b3"
                                 />
@@ -272,7 +322,22 @@
                                 android:text="15정거장"
                                 android:textColor="#8a8a8a"
                                 />
-
+                            <TextView
+                                android:id = "@+id/stationStart3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
                         </LinearLayout>
 
                         <LinearLayout
@@ -301,6 +366,16 @@
                                 android:text="15분 소요"
                                 android:textAlignment="textEnd"
                                 android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
                                 android:layout_marginBottom="6dp"
                                 android:textColor="#b3b3b3"
                                 />
@@ -352,7 +427,22 @@
                                 android:text="15정거장"
                                 android:textColor="#8a8a8a"
                                 />
-
+                            <TextView
+                                android:id = "@+id/stationStart4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
 
                         </LinearLayout>
 
@@ -382,6 +472,16 @@
                                 android:text="15분 소요"
                                 android:textAlignment="textEnd"
                                 android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
                                 android:layout_marginBottom="6dp"
                                 android:textColor="#b3b3b3"
                                 />

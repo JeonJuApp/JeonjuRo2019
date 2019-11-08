@@ -1,15 +1,6 @@
 package org.androidtown.jeonjuro2018;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.StrictMode;
-import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,21 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.channels.Channel;
 import java.util.ArrayList;
 
 public class TourMain extends AppCompatActivity {
@@ -43,7 +23,6 @@ public class TourMain extends AppCompatActivity {
     boolean inAddr = false, infileImg = false, indataTtitle = false, infileUrl = false, indataSid = false, inPosx = false, inPosy = false;
     String addr = null, dataTitle = null, fileUrl = null, dataSid = null, posx = null, posy = null;
 
-    Context mContext;
     boolean inHomepage = false;
     String homepage = null;
     boolean indataContent = false;
@@ -52,7 +31,6 @@ public class TourMain extends AppCompatActivity {
     ArrayList<TourInfo> tourInfoArrayList;
     ArrayList<TourInfo> tourDataList;
 
-    TextView textView;
     ImageView imageView;
     int i = 1;
 
@@ -71,19 +49,24 @@ public class TourMain extends AppCompatActivity {
 
         tourDataList = new ArrayList<>();
 
-
-
         StrictMode.enableDefaults();
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricList?authApiKey=";
-            String key = "mU%2F2QPvNKkLKVF3EQhuSvb0x6QgubDrqMD1yvNvBgPMnsJXU%2B8sB%2B9JHMzIYp5ZpDanA0ANHjgoPJmBkQIjTiw%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl + key);
+            Log.i("정보","URL");
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
+            Log.i("정보","크리에이트");
             XmlPullParser parser = parserCreator.newPullParser();
+            Log.i("정보","파서");
             parser.setInput(url.openStream(), null);
+            Log.i("정보","인ㄴ풋");
+
             int parserEvent = parser.getEventType();
+
             while (parserEvent != XmlPullParser.END_DOCUMENT) {
+                Log.i("정보","반복문");
                 switch (parserEvent) {
                     case XmlPullParser.START_TAG:
                         if (parser.getName().equals("dataSid")) {
@@ -166,7 +149,7 @@ public class TourMain extends AppCompatActivity {
     private void comeonImage(String dataSid) {
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/historic/getHistoricFile?authApiKey=";
-            String key = "mU%2F2QPvNKkLKVF3EQhuSvb0x6QgubDrqMD1yvNvBgPMnsJXU%2B8sB%2B9JHMzIYp5ZpDanA0ANHjgoPJmBkQIjTiw%3D%3D&dataSid=";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D&dataSid=";
             String data = dataSid;
             URL url = new URL(rl + key + data);//검색 URL부분
 

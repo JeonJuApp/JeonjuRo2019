@@ -29,9 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.hd.viewcapture.CaptureManager;
 import com.hd.viewcapture.ViewCapture;
 
-import org.androidtown.jeonjuro2018.ItemData;
-import org.androidtown.jeonjuro2018.R;
-
 import java.io.File;
 
 public class ShowSchedule extends AppCompatActivity implements View.OnClickListener {
@@ -45,7 +42,7 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
     ItemData itemData;
     DatabaseReference mRef;
 
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //
         setCustomActionbar();
@@ -58,12 +55,12 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_show_schedule);
         callviewId();
-        Log.i("정보3", itemData.getBusstop_title().get(0)+"");
+        Log.i("정보3", itemData.getBusstop_title().get(0) + "");
 
-        stationTitle1.setText(itemData.getBusstop_title().get(0)+" - "+itemData.getBusstop_title().get(1));
-        stationTitle2.setText(itemData.getBusstop_title().get(1)+" - "+itemData.getBusstop_title().get(2));
-        stationTitle3.setText(itemData.getBusstop_title().get(2)+" - "+itemData.getBusstop_title().get(3));
-        stationTitle4.setText(itemData.getBusstop_title().get(3)+" - "+itemData.getBusstop_title().get(4));
+        stationTitle1.setText(itemData.getBusstop_title().get(0) + " - " + itemData.getBusstop_title().get(1));
+        stationTitle2.setText(itemData.getBusstop_title().get(1) + " - " + itemData.getBusstop_title().get(2));
+        stationTitle3.setText(itemData.getBusstop_title().get(2) + " - " + itemData.getBusstop_title().get(3));
+        stationTitle4.setText(itemData.getBusstop_title().get(3) + " - " + itemData.getBusstop_title().get(4));
 
         int size = itemData.getBusResult().size();
 
@@ -79,12 +76,13 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
         stationCnt3.setText(itemData.getBusResult().get(7));
         stationBus3.setText(itemData.getBusResult().get(8));
 
-        if(size==12){
+        if (size == 12) {
             stationTime4.setText(itemData.getBusResult().get(9));
             stationCnt4.setText(itemData.getBusResult().get(10));
             stationBus4.setText(itemData.getBusResult().get(11));
         }
     }
+
     private void callviewId() {
         stationTitle1 = (TextView) findViewById(R.id.stationTitle1);
         stationTitle2 = (TextView) findViewById(R.id.stationTitle2);
@@ -108,6 +106,7 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
 
         scroll = (ScrollView) findViewById(R.id.scrollview);
     }
+
     private void setCustomActionbar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -126,6 +125,7 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
         actionBar.setCustomView(mCustomView, params);
 
     }
+
     //캡쳐하기전 다시 확인
     void questionCapture() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -181,6 +181,7 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -194,15 +195,6 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
                 checkPermission();
                 questionCapture();
                 break;
-            case R.id.addButton:
-             /*   Intent intent = new Intent(BusTotalResult.this, addDialog.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("oData", (ArrayList<? extends Parcelable>) oData);
-                bundle.putString("totalTime", totalTime.getText().toString());
-                intent.putExtras(bundle);
-                startActivity(intent);*/
-                break;
-
         }
     }
 
@@ -211,11 +203,12 @@ public class ShowSchedule extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(android.content.Intent.ACTION_SEND);
         intent.setType("image/*");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".provider",
+        intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
                 new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/jeonju/" + "temp.jpg")));
         Intent chooser = Intent.createChooser(intent, "공유하기");
         this.startActivity(chooser);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {

@@ -5,24 +5,17 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.StringTokenizer;
 
 public class CustomActivity extends Fragment implements View.OnClickListener {
@@ -31,10 +24,7 @@ public class CustomActivity extends Fragment implements View.OnClickListener {
     Button traveler_friend, traveler_lover, traveler_family, traveler_alone;
     Button goal_picture, goal_eating, goal_activity;
     Button tendency_diligent, tendency_nodili;
-    LinearLayout second_bar;
     AppCompatDialog progressDialog;
-
-    TextView tv_progess_message;
     String gogoresult="";
 
     public CustomActivity() {
@@ -63,7 +53,6 @@ public class CustomActivity extends Fragment implements View.OnClickListener {
         tendency_diligent = view.findViewById(R.id.tendency_diligent);
         tendency_nodili = view.findViewById(R.id.tendency_nodili);
 
-
         checkBtn = (Button)view.findViewById(R.id.checkBtn); //조사하기 버튼
 
         checkBtn.setOnClickListener(new View.OnClickListener(){
@@ -75,7 +64,6 @@ public class CustomActivity extends Fragment implements View.OnClickListener {
                     startProgress();
                     StringTokenizer stringTokenizer = new StringTokenizer(clickname, " ");
                     int countTokens = stringTokenizer.countTokens();
-                    String[] research = new String[countTokens]; //5
                     int[] aa = new int[countTokens]; //5
                     int t = 0;
 

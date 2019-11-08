@@ -3,6 +3,8 @@ package org.androidtown.jeonjuro2018;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,19 +68,26 @@ public class addDialog extends AppCompatActivity {
                 Log.d("Tag", title);
                 Log.i("정보2", bundle_itemData.getBusstop_title()+"");
                 Log.i("정보2_위치", bundle_itemData.getBusResult()+"");
-
                 ItemData itemData = new ItemData(title, bundle_itemData.getBusResult(), bundle_itemData.getBusstop_title());
                 mRootRef.push().setValue(itemData);
-                Intent intent = new Intent(addDialog.this, scheduleMain.class);
+                Intent intent = new Intent(addDialog.this, MainActivity.class);
                 Bundle myBundle = new Bundle();
                 myBundle.putParcelable("data", itemData);
-                intent.putExtras(myBundle);
+
                 startActivity(intent);
+//                scheduleMain fragment = new scheduleMain();
+//                fragment.setArguments(myBundle);
+//                transaction.replace(fragment_container, fragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+                //scheduleMain fragment = new scheduleMain()
+                //Intent intent = new Intent(addDialog.this, scheduleMain.class);
+                //Bundle myBundle = new Bundle();
+                //myBundle.putParcelable("data", itemData);
+                //fragment.setArguments(myBundle);
+                //startActivity(intent);
                 finish();
             }
         });
     }
-
 }
-
-

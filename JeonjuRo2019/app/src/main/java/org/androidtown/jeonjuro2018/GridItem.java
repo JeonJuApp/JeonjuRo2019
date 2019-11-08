@@ -1,24 +1,11 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-/**
- * Created by starf on 2018-11-03.
- */
 
 public class GridItem extends LinearLayout {
     TextView tv1;

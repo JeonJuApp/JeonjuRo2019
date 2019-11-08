@@ -174,38 +174,38 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
                         subPathOBJ = subPathArray.getJSONObject(b);
                         int Type = subPathOBJ.getInt("trafficType"); // 이동방법
 
-                            // 만약 버스라면,
-                            if (Type == 2) {
-                                String startName = subPathOBJ.getString("startName"); // 출발지
-                                routedetail += startName + " 에서 ";
-                                String endName = subPathOBJ.getString("endName"); // 도착지
-                                String stationCount = subPathOBJ.getString("stationCount"); //거치는 정류장 수
-                                routedetail += endName;
-                                routedetail += "  총 " + stationCount + "정류장  ";
-                                busResult.add(stationCount + "정거장");
+                        // 만약 버스라면,
+                        if (Type == 2) {
+                            String startName = subPathOBJ.getString("startName"); // 출발지
+                            routedetail += startName + " 에서 ";
+                            String endName = subPathOBJ.getString("endName"); // 도착지
+                            String stationCount = subPathOBJ.getString("stationCount"); //거치는 정류장 수
+                            routedetail += endName;
+                            routedetail += "  총 " + stationCount + "정류장  ";
+                            busResult.add(stationCount + "정거장");
 
-                                // 버스 정보 가져옴 (정보가 많으므로 array로 가져오기)
-                                JSONArray laneObj = subPathOBJ.getJSONArray("lane");
+                            // 버스 정보 가져옴 (정보가 많으므로 array로 가져오기)
+                            JSONArray laneObj = subPathOBJ.getJSONArray("lane");
 
-                                String busNo = laneObj.getJSONObject(0).getString("busNo"); // 버스번호정보
-                                String busroute = " [" + busNo + "] 번 탑승 ";
+                            String busNo = laneObj.getJSONObject(0).getString("busNo"); // 버스번호정보
+                            String busroute = " [" + busNo + "] 번 탑승 ";
 
-                                busResult.add(busNo.substring(0, busNo.indexOf("(")) + "번 탑승");
-                                routedetail += busroute;
-                                busID = laneObj.getJSONObject(0).getInt("busID"); // 버스정류장 id
+                            busResult.add(busNo.substring(0, busNo.indexOf("(")) + "번 탑승");
+                            routedetail += busroute;
+                            busID = laneObj.getJSONObject(0).getInt("busID"); // 버스정류장 id
 
-                                //버스 세부내역 가져옴
-                                JSONArray stationsObj = subPathOBJ.getJSONObject("passStopList").getJSONArray("stations");
-                                int stationsObjObjCount = stationsObj.length();
+                            //버스 세부내역 가져옴
+                            JSONArray stationsObj = subPathOBJ.getJSONObject("passStopList").getJSONArray("stations");
+                            int stationsObjObjCount = stationsObj.length();
 
-                                routedetail += totalTime + "분 소요 )\n";
-                              //  totalTime += cur.sectionTime;
-                            }
+                            routedetail += totalTime + "분 소요 )\n";
+                            //  totalTime += cur.sectionTime;
                         }
+                    }
                     routedetail += "총" + Integer.toString(totalTime) + "분 소요\n ";
-                    } // 세부경로 종료
+                } // 세부경로 종료
 
-                    Log.i("정보", routedetail + "");
+                Log.i("정보", routedetail + "");
 
             }
         } catch (JSONException e) {

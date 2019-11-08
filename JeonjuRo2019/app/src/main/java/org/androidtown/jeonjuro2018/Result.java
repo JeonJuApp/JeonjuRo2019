@@ -6,20 +6,13 @@ import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -35,7 +28,6 @@ public class Result extends AppCompatActivity {
     String dataSid = null, dataTitle = null, fileUrl = null;
 
     ArrayList<TourInfo> tourDataList;
-
 
     GridView gridView;
     GridViewAdapter adapter;
@@ -68,7 +60,7 @@ public class Result extends AppCompatActivity {
         //음식 파싱 시작
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%88%98%EB%9D%BC%EC%98%A8";
             URL url = new URL(rl+key);//검색 URL부분
 
@@ -127,7 +119,7 @@ public class Result extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%84%B1%EB%AF%B8%EB%8B%B9";
             URL url = new URL(rl+key);//검색 URL부분
 
@@ -243,7 +235,7 @@ public class Result extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EC%B6%94%EC%96%B4%ED%83%95";
             URL url = new URL(rl+key);//검색 URL부분
 

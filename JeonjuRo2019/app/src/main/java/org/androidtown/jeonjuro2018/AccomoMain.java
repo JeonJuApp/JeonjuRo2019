@@ -1,13 +1,6 @@
 package org.androidtown.jeonjuro2018;
 
-import android.content.Intent;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.StrictMode;
-import android.provider.ContactsContract;
-
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,22 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.channels.Channel;
-
-
 import java.util.ArrayList;
 
 public class AccomoMain extends AppCompatActivity {
@@ -42,7 +23,6 @@ public class AccomoMain extends AppCompatActivity {
     boolean inhonokTypeStr = false, inhomepage = false, inintroContent = false, indataContent = false;
     String addr = null, dataTitle = null, fileUrl = null, dataSid = null, honokTypeStr = null, homepage = null, introContent = null, dataContent = null;
     ArrayList<TourInfo> tourInfoArrayList;
-    TextView textView;
     ImageView imageView;
     int i = 1;
 
@@ -181,7 +161,6 @@ public class AccomoMain extends AppCompatActivity {
         } catch (Exception e) {
         }
     }
-
 
     private void setCustomActionbar() {
         ActionBar actionBar = getSupportActionBar();

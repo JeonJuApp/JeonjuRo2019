@@ -1,16 +1,15 @@
 package org.androidtown.jeonjuro2018;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,10 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.support.v7.app.AlertDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,33 +28,29 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-public class scheduleMain extends AppCompatActivity {
+public class scheduleMain extends Fragment {
     RecyclerView mRecyclerView;
     scheduleAdapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     ItemData route_info;
     ArrayList<ItemData>fileList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_main);
-        setCustomActionbar(); //커스텀 액션바
-        fileList = new ArrayList<>();
-        //fileList.add("제목", ("","","","","","","","","","","",""), BusTotalResult.dataTitle);
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+    public scheduleMain() {
+        // Required empty public constructor
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_schedule_main, container, false);
+        fileList = new ArrayList<>();
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
         View.OnClickListener mListener = new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -65,23 +58,20 @@ public class scheduleMain extends AppCompatActivity {
                 ItemData itemData = fileList.get(position);
 
                 Log.d("TAG", "인텐트 전");
-                Intent intent = new Intent(scheduleMain.this, ShowSchedule.class);
+                Intent intent = new Intent(getActivity(), ShowSchedule.class);
                 Bundle myBundle = new Bundle();
                 myBundle.putParcelable("data", itemData);
                 intent.putExtras(myBundle);
                 startActivity(intent);
             }
         };
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference plansRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("plans");
-
-
         View.OnLongClickListener mLongListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 final int position = mRecyclerView.getChildAdapterPosition(v);
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(scheduleMain.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
                 alertDialogBuilder.setTitle("일정 삭제");
                 alertDialogBuilder.setMessage("일정을 삭제하시겠습니까?")
@@ -105,7 +95,7 @@ public class scheduleMain extends AppCompatActivity {
             }
             ;
         };
-        mAdapter = new scheduleAdapter(this, fileList, mListener, mLongListener);
+        mAdapter = new scheduleAdapter(getContext(), fileList, mListener, mLongListener);
         mRecyclerView.setAdapter(mAdapter);
 
         plansRef.addChildEventListener(new ChildEventListener() {
@@ -154,26 +144,9 @@ public class scheduleMain extends AppCompatActivity {
             }
         });
 
-    }
-    private void setCustomActionbar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        //set custom view layout
-        View mCustomView = LayoutInflater.from(this).inflate(R.layout.actionbar_main, null);
-        actionBar.setCustomView(mCustomView);
-
-        //set no padding both side
-        Toolbar parent = (Toolbar) mCustomView.getParent();
-        parent.setContentInsetsAbsolute(0, 0);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(mCustomView, params);
+        return view;
     }
 }
-
 class scheduleAdapter extends RecyclerView.Adapter<scheduleAdapter.ViewHolder>{
     Context mContext;
     ArrayList<ItemData> items;

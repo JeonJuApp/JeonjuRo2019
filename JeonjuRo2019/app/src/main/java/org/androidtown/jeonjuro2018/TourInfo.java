@@ -1,11 +1,7 @@
 package org.androidtown.jeonjuro2018;
 
-import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
-
-import java.io.Serializable;
 
 public class TourInfo implements Parcelable {
     private String url;
@@ -79,46 +75,25 @@ public class TourInfo implements Parcelable {
         return tourName;
     }
 
-    public void setTourName(String tourName) {
-        this.tourName = tourName;
-    }
-
     public String getTourLocation() {
         return tourLocation;
-    }
-
-    public void setTourLocation(String tourLocation) {
-        this.tourLocation = tourLocation;
     }
 
     public String getDataContent() {
         return dataContent;
     }
 
-    public void setDataContent(String dataContent) {
-        this.dataContent = dataContent;
-    }
-
     public String getHomepage() {
         return homepage;
-    }
-
-    public void setHomepage(String homepage) {
-        this.homepage = homepage;
     }
 
     public String getPosx() {
         return posx;
     }
-    public void setPosx(String posx){
-        this.posx = posx;
-    }
 
     public String getPosy(){
         return posy;
     }
-    public void setPosy(String posy){
-        this.posy = posy;
-    }
+
 }
 

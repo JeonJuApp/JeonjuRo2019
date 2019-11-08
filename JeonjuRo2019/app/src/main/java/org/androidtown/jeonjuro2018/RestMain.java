@@ -1,9 +1,6 @@
 package org.androidtown.jeonjuro2018;
 
 import android.content.Intent;
-
-import android.graphics.Bitmap;
-
 import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import android.widget.ImageView;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import java.net.URL;
@@ -23,7 +18,6 @@ import java.util.ArrayList;
 public class RestMain extends AppCompatActivity {
     RecyclerView restRecyclerView;
     RecyclerView.LayoutManager restLayoutManager;
-
 
     boolean storeName = false, storeAddr = false, storeMenu = false, storeImg = false, storeOpen = false, b_holiday = false, b_opentime = false;
     String storeNm = null, storeAd = null, Menu = null, ImgURL = null, storeop = null, holiday = null, opentime = null;
@@ -34,7 +28,6 @@ public class RestMain extends AppCompatActivity {
         setContentView(R.layout.activity_rest_main);
         setCustomActionbar();
 
-
         StrictMode.enableDefaults();
 
         restRecyclerView  = findViewById(R.id.recycler_view);
@@ -42,16 +35,11 @@ public class RestMain extends AppCompatActivity {
         restLayoutManager = new LinearLayoutManager(this);
         restRecyclerView.setLayoutManager(restLayoutManager);
 
-        ArrayList<TourInfo> tourInfoArrayList = new ArrayList<>();
-
         ArrayList<FoodInfo> foodInfoArrayList = new ArrayList<>();
-        FoodInfo food = null;
-
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getWhiteRiceList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
-            String data = "&keyword=%EC%88%98%EB%9D%BC%EC%98%A8";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             URL url = new URL(rl+key);//검색 URL부분
 
             XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
@@ -132,7 +120,7 @@ public class RestMain extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%84%B1%EB%AF%B8%EB%8B%B9";
             URL url = new URL(rl+key);//검색 URL부분
 
@@ -293,7 +281,7 @@ public class RestMain extends AppCompatActivity {
 
         try {
             String rl = "http://openapi.jeonju.go.kr/rest/jeonjufood/getMimbapList?authApiKey=";
-            String key = "l%2Fbl3sZQ3YhS3%2BFhJ2byNgr0196DxOsYpBwiuxXai9lXFDCQk0uLB6cCO3K8sNazZBbLeDQigvUWgmkZn3i86A%3D%3D";
+            String key = "ScrjsS29GxaRJI8NXJCbrR%2FZMklimX6gTqyIBSWjMy7zt3w3HbzAgsL7%2BLFN6avz3jq%2BkA4YaW49yCNARnKvUQ%3D%3D";
             String data = "&keyword=%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EC%B6%94%EC%96%B4%ED%83%95";
             URL url = new URL(rl+key);//검색 URL부분
 
@@ -530,13 +518,12 @@ public class RestMain extends AppCompatActivity {
         } catch (Exception e) {
         }
 
-
         View.OnClickListener mListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(RestMain.this, LocationDialog.class);
-                startActivity(intent);
+             /*   Intent intent = new Intent(RestMain.this, LocationDialog.class);
+                startActivity(intent);*/
             }
         };
         FoodAdapter myAdapter = new FoodAdapter(this,foodInfoArrayList,mListener);

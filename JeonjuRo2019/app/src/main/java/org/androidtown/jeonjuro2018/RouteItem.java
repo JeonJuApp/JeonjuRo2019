@@ -1,8 +1,5 @@
 package org.androidtown.jeonjuro2018;
 
-import org.androidtown.jeonjuro2018.ItemData;
-import org.androidtown.jeonjuro2018.Place;
-
 import java.util.ArrayList;
 
 public class RouteItem {
