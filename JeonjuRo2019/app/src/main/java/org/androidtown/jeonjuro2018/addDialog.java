@@ -73,8 +73,10 @@ public class addDialog extends AppCompatActivity {
                 Intent intent = new Intent(addDialog.this, MainActivity.class);
                 Bundle myBundle = new Bundle();
                 myBundle.putParcelable("data", itemData);
-
+                intent.putExtras(myBundle);
                 startActivity(intent);
+
+
 //                scheduleMain fragment = new scheduleMain();
 //                fragment.setArguments(myBundle);
 //                transaction.replace(fragment_container, fragment);

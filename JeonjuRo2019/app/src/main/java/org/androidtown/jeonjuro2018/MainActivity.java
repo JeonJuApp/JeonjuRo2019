@@ -1,5 +1,6 @@
 package org.androidtown.jeonjuro2018;
 
+import android.content.ClipData;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.content.Intent;
@@ -32,7 +33,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         homeTopbar.setOnClickListener(this);
         schedule_topbar.setOnClickListener(this);
         custom_topbar.setOnClickListener(this);
-        callFragment(FRAGMENT1);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle==null) {
+            callFragment(FRAGMENT1);
+
+        }else if(!bundle.isEmpty()){
+            callFragment(FRAGMENT3);
+        }
     }
 
     private void setCustomActionbar() {
