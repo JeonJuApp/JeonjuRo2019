@@ -1,0 +1,495 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:id = "@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="260dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bus_background2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="130dp">
+
+                        <ImageButton
+                            android:id="@+id/addButton"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="onClick"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/add" />
+                        <ImageButton
+                            android:id="@+id/cameraButton"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="onClick"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/capture" />
+
+                        <ImageButton
+                            android:id="@+id/shareButton"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="onClick"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/share" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-60dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="65"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id = "@+id/stationTitle1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="만정식 - 수라온"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#4b4b4b"
+                                />
+                            <TextView
+                                android:id = "@+id/stationCnt1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15정거장"
+                                android:textColor="#8a8a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationStart1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="35"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id = "@+id/stationBus1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="103번 탑승"
+                                android:layout_marginTop="6dp"
+                                android:textAlignment="textEnd"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#f5a622"
+                                />
+                            <TextView
+                                android:id = "@+id/stationTime1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15분 소요"
+                                android:textAlignment="textEnd"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="60"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id = "@+id/stationTitle2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="만정식 - 수라온"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#4b4b4b"
+                                />
+                            <TextView
+                                android:id = "@+id/stationCnt2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15정거장"
+                                android:textColor="#8a8a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationStart2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="40"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id = "@+id/stationBus2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="103번 탑승"
+                                android:layout_marginTop="6dp"
+                                android:textAlignment="textEnd"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#f5a622"
+                                />
+                            <TextView
+                                android:id = "@+id/stationTime2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15분 소요"
+                                android:textAlignment="textEnd"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="60"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id = "@+id/stationTitle3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="만정식 - 수라온"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#4b4b4b"
+                                />
+                            <TextView
+                                android:id = "@+id/stationCnt3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15정거장"
+                                android:textColor="#8a8a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationStart3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="40"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id = "@+id/stationBus3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="103번 탑승"
+                                android:layout_marginTop="6dp"
+                                android:textAlignment="textEnd"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#f5a622"
+                                />
+                            <TextView
+                                android:id = "@+id/stationTime3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15분 소요"
+                                android:textAlignment="textEnd"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardUseCompatPadding="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:contentPadding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="60"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id = "@+id/stationTitle4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="만정식 - 수라온"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#4b4b4b"
+                                />
+                            <TextView
+                                android:id = "@+id/stationCnt4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15정거장"
+                                android:textColor="#8a8a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationStart4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="출발 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+                            <TextView
+                                android:id = "@+id/stationDes4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="도착 정류장: "
+                                android:textColor="#1a1a8a"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="40"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id = "@+id/stationBus4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="103번 탑승"
+                                android:layout_marginTop="6dp"
+                                android:textAlignment="textEnd"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="#f5a622"
+                                />
+                            <TextView
+                                android:id = "@+id/stationTime4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="15분 소요"
+                                android:textAlignment="textEnd"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                            <TextView
+                                android:id = "@+id/stationMeter4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/binggrae"
+                                android:text="561m"
+                                android:textAlignment="textEnd"
+                                android:layout_marginBottom="6dp"
+                                android:textColor="#b3b3b3"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+    </RelativeLayout>
+        </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

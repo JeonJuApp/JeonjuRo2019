@@ -522,8 +522,8 @@ public class RestMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(RestMain.this, LocationDialog.class);
-                startActivity(intent);
+             /*   Intent intent = new Intent(RestMain.this, LocationDialog.class);
+                startActivity(intent);*/
             }
         };
         FoodAdapter myAdapter = new FoodAdapter(this,foodInfoArrayList,mListener);

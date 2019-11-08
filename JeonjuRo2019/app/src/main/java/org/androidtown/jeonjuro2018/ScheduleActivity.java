@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -75,7 +76,6 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
         DataList = getIntent().getParcelableArrayListExtra("data");
         String[][] arr = new String[DataList.size()][3];
 
-
         int nDatCnt = 0;
         oData = new ArrayList<>();
 
@@ -86,6 +86,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
             dataTitle[i] = DataList.get(i).getName();
             arr[i][1] = DataList.get(i).getPosx();
             arr[i][2] = DataList.get(i).getPosy();
+    //        Log.i("정보: ",DataList.get(i).getType()+ " " +arr[i][0] + " "+ arr[i][1]+" " + arr[i][2]+"");
         }
         StrictMode.enableDefaults();
         y = 0;
@@ -128,6 +129,7 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
+        walk_btn = (ImageButton)findViewById(R.id.walkBtn);
         share_btn = (ImageButton) findViewById(R.id.shareBtn);
         camera_btn = (ImageButton) findViewById(R.id.cameraBtn);
         add_btn = (ImageButton) findViewById(R.id.addBtn);
@@ -141,6 +143,11 @@ public class ScheduleActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.walkBtn:
+                Intent busIntent = new Intent(ScheduleActivity.this, BusTotalResult.class);
+                busIntent.putParcelableArrayListExtra("data",DataList);
+                startActivity(busIntent);
+                break;
             case R.id.shareBtn:
                 shareKakao();
                 Toast.makeText(this, "공유기능", Toast.LENGTH_SHORT).show();
