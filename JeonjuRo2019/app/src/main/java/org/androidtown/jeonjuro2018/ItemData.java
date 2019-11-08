@@ -1,32 +1,33 @@
 package org.androidtown.jeonjuro2018;
 
+import android.content.ClipData;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
 
 public class ItemData implements Parcelable {
-    public String listTitle;
-    public String listTitle2;
-    public String listBus;
-    public String listBus2;
-    public String listBusStopNum;
-    public String listBusTime;
+    private String id;
+    private String title;
+    private ArrayList<String> busResult = new ArrayList<>();
+    private ArrayList<String> busstop_title = new ArrayList<>();
 
-    public ItemData(){
-        listTitle="";
-        listTitle2="";
-        listBus="";
-        listBus2="";
-        listBusStopNum="";
-        listBusTime="";
+
+    public ItemData() {
+    }
+    public ItemData(String title, ArrayList<String> busResult,  ArrayList<String> busstop_title){
+        this.title = title;
+        this.busResult = busResult;
+        this.busstop_title = busstop_title;
     }
 
-    public ItemData(Parcel in){
-        listTitle=in.readString();
-        listTitle2=in.readString();
-        listBus=in.readString();
-        listBus2=in.readString();
-        listBusStopNum=in.readString();
-        listBusTime=in.readString();
+    public ItemData(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        busResult = in.readArrayList(null);
+        busstop_title = in.readArrayList(null);
+
     }
 
     public static final Creator<ItemData> CREATOR = new Creator<ItemData>() {
@@ -41,47 +42,56 @@ public class ItemData implements Parcelable {
         }
     };
 
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ArrayList<String> getBusResult() {
+        return busResult;
+    }
+
+    public ArrayList<String> getBusstop_title() {
+        return busstop_title;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBusResult(ArrayList<String> busResult) {
+        this.busResult = busResult;
+    }
+
+    public void setBusstop_title(ArrayList<String> busstop_title) {
+        this.busstop_title = busstop_title;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(listTitle);
-        dest.writeString(listTitle2);
-        dest.writeString(listBus);
-        dest.writeString(listBus2);
-        dest.writeString(listBusStopNum);
-        dest.writeString(listBusTime);
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeList(busResult);
+        dest.writeList(busstop_title);
     }
 
-    public void setListBus(String listBus) {
-        this.listBus = listBus;
-    }
-
-    public void setListBus2(String listBus2) {
-        this.listBus2 = listBus2;
-    }
-
-    public void setListBusStopNum(String listBusStopNum) {
-        this.listBusStopNum = listBusStopNum;
-    }
-
-    public void setListBusTime(String listBusTime) {
-        this.listBusTime = listBusTime;
-    }
-
-    public void setListTitle(String listTitle) {
-        this.listTitle = listTitle;
-    }
-
-    public void setListTitle2(String listTitle2) {
-        this.listTitle2 = listTitle2;
-    }
 
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
 }

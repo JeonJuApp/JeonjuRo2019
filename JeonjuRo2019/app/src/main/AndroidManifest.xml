@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.androidtown.jeonjuro2018">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
@@ -13,35 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            >
+        <activity android:name=".ShowSchedule"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScheduleActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="@string/kakaolint_host"
-                    android:scheme="@string/kakao_scheme" />
-            </intent-filter>
-        </activity>
 
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+        <activity android:name=".MainActivity"></activity>
 
-
-        <activity android:name=".MainActivity">
-        </activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -61,7 +41,10 @@
         <activity
             android:name=".addDialog"
             android:theme="@style/Dialog" />
-        <activity android:name=".ShowActivity"></activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -73,5 +56,9 @@
                 android:resource="@xml/provider" />
         </provider>
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

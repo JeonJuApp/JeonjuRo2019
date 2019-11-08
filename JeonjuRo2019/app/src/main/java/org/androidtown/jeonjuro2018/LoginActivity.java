@@ -95,7 +95,7 @@ public class LoginActivity extends FragmentActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) { // 만약 로그인이 되어있으면 다음 액티비티 실행
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(intent);
             finish();
         }
