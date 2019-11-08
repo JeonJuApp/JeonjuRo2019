@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--홈버튼 부분-->
+        <info.hoang8f.android.segmented.SegmentedGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            segmentedgroup:sc_border_width="2dp"
+
+            segmentedgroup:sc_corner_radius="5dp">
+
+            <RadioButton
+                android:id="@+id/home_topbar"
+                style="@style/RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="0dp"
+                android:layout_weight="25"
+                android:backgroundTint="@color/gray"
+                android:focusable="true"
+                android:fontFamily="@font/binggrae"
+                android:padding="0dp"
+                android:text="홈"
+                android:textAllCaps="false" />
+
+
+            <RadioButton
+                android:id="@+id/custom_topbar"
+                style="@style/RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="0dp"
+                android:layout_weight="25"
+                android:backgroundTint="@color/gray"
+                android:fontFamily="@font/binggrae"
+                android:padding="0dp"
+                android:text="맞춤추천"
+                android:textAllCaps="false" />
+
+            <RadioButton
+                android:id="@+id/schedule_topbar"
+                style="@style/RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="0dp"
+                android:layout_weight="25"
+                android:backgroundTint="@color/gray"
+                android:fontFamily="@font/binggrae"
+                android:padding="0dp"
+                android:text="일정확인"
+                android:textAllCaps="false" />
+
+        </info.hoang8f.android.segmented.SegmentedGroup>
+    </LinearLayout>
+    `
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topbar" />
+</RelativeLayout>
