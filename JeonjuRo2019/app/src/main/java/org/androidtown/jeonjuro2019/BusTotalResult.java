@@ -59,6 +59,9 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
     TextView stationCnt1, stationCnt2, stationCnt3, stationCnt4;
     TextView stationBus1, stationBus2, stationBus3, stationBus4;
     TextView stationTime1, stationTime2, stationTime3, stationTime4;
+    TextView stationStart1,stationStart2, stationStart3, stationStart4;
+    TextView stationDes1, stationDes2, stationDes3, stationDes4;
+    TextView stationMeter1,stationMeter2, stationMeter3, stationMeter4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,21 +90,35 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         stationTitle3.setText(dataTitle.get(2) + " - " + dataTitle.get(3));
         stationTitle4.setText(dataTitle.get(3) + " - " + dataTitle.get(4));
 
+
         stationTime1.setText(busResult.get(0));
         stationCnt1.setText(busResult.get(1));
         stationBus1.setText(busResult.get(2));
+        stationStart1.setText(busResult.get(3));
+        stationDes1.setText(busResult.get(4));
+        stationMeter1.setText(busResult.get(5));
 
-        stationTime2.setText(busResult.get(3));
-        stationCnt2.setText(busResult.get(4));
-        stationBus2.setText(busResult.get(5));
+        stationTime2.setText(busResult.get(6));
+        stationCnt2.setText(busResult.get(7));
+        stationBus2.setText(busResult.get(8));
+        stationStart2.setText(busResult.get(9));
+        stationDes2.setText(busResult.get(10));
+        stationMeter2.setText(busResult.get(11));
 
-        stationTime3.setText(busResult.get(6));
-        stationCnt3.setText(busResult.get(7));
-        stationBus3.setText(busResult.get(8));
+        stationTime3.setText(busResult.get(12));
+        stationCnt3.setText(busResult.get(13));
+        stationBus3.setText(busResult.get(14));
+        stationStart3.setText(busResult.get(15));
+        stationDes3.setText(busResult.get(16));
+        stationMeter3.setText(busResult.get(17));
 
-        stationTime4.setText(busResult.get(9));
-        stationCnt4.setText(busResult.get(10));
-        stationBus4.setText(busResult.get(11));
+        stationTime4.setText(busResult.get(18));
+        stationCnt4.setText(busResult.get(19));
+        stationBus4.setText(busResult.get(20));
+        stationStart4.setText(busResult.get(21));
+        stationDes4.setText(busResult.get(22));
+        stationMeter4.setText(busResult.get(23));
+
 
     }
 
@@ -125,6 +142,21 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         stationTime2 = (TextView) findViewById(R.id.stationTime2);
         stationTime3 = (TextView) findViewById(R.id.stationTime3);
         stationTime4 = (TextView) findViewById(R.id.stationTime4);
+
+        stationStart1 = (TextView)findViewById(R.id.stationStart1);
+        stationStart2 = (TextView)findViewById(R.id.stationStart2);
+        stationStart3 = (TextView)findViewById(R.id.stationStart3);
+        stationStart4 = (TextView)findViewById(R.id.stationStart4);
+
+        stationDes1 = (TextView)findViewById(R.id.stationDes1);
+        stationDes2 = (TextView)findViewById(R.id.stationDes2);
+        stationDes3 = (TextView)findViewById(R.id.stationDes3);
+        stationDes4 = (TextView)findViewById(R.id.stationDes4);
+
+        stationMeter1 = (TextView)findViewById(R.id.stationMeter1);
+        stationMeter2 = (TextView)findViewById(R.id.stationMeter2);
+        stationMeter3 = (TextView)findViewById(R.id.stationMeter3);
+        stationMeter4 = (TextView)findViewById(R.id.stationMeter4);
 
         scroll = (ScrollView) findViewById(R.id.scrollview);
     }

@@ -105,11 +105,7 @@ public class AccomoMain extends AppCompatActivity {
                         if (parser.getName().equals("list")) {
                             comeonImage(dataSid);
                             if (i != 1) {
-                                Log.i("숙박", "들어옴");
-                                Log.i("숙박1", fileUrl+"");
-                            
                                 tourInfoArrayList.add(new TourInfo(fileUrl, dataTitle, addr, introContent, homepage));
-                                Log.i("숙박1", dataTitle+"");
                             } else {
                                 tourInfoArrayList.add(new TourInfo("http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png", dataTitle, addr, introContent, homepage));
                                 i = 0;
@@ -121,8 +117,6 @@ public class AccomoMain extends AppCompatActivity {
             }
         } catch (Exception e) {
         }
-        tourInfoArrayList.add(new TourInfo("http://tour.jeonju.go.kr/planweb/upload/9be517a74f72e96b014f820463970068/inine/content/preview/2dc57345-3f23-47d7-842c-712ca4807a78.jpg.png", "안녕", "ㅇㄴ", "ㅋ", "http://www.jkhanok.co.kr"));
-        Log.i("숙박1", tourInfoArrayList +"");
         MyAdapter myAdapter = new MyAdapter(this, tourInfoArrayList);
         accomoRecyclerView.setAdapter(myAdapter);
     }
