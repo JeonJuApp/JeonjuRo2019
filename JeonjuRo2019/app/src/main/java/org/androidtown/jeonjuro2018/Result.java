@@ -482,7 +482,7 @@ public class Result extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myintent = new Intent(Result.this,ScheduleActivity.class);
+                Intent myintent = new Intent(Result.this,BusTotalResult.class);
                 myintent.putParcelableArrayListExtra("data",data);
                 startActivity(myintent);
                 finish();
