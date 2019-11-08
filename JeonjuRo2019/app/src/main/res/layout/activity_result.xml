@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context="org.androidtown.jeonjuro2019.Result">
+    tools:context="org.androidtown.jeonjuro2019_v2.Result">
 
 
     <ImageView

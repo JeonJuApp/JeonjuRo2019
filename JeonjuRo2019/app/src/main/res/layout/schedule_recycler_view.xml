@@ -41,15 +41,6 @@
                 android:textSize="20sp"
                 android:text="등록된 일정이 없습니다."/>
 
-            <TextView
-                android:id="@+id/sub"
-                android:layout_below="@+id/scheduleTitle"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/binggrae"
-                android:text="새로운 일정을 등록해주세요"
-                android:textSize="12sp" />
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
