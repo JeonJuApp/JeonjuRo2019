@@ -84,6 +84,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "790044971495-qqavkc499vsgqf38sdf9oraiseeln4us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.androidtown.jeonjuro2019",
+            "certificate_hash": "898f32b890b8bf5a672685a8f9d266dd1cfd918b"
+          }
+        },
+        {
           "client_id": "790044971495-ddi44ulvqs412o0eqfd3niplnuf7h03k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
