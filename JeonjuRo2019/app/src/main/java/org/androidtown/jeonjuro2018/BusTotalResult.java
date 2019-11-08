@@ -291,21 +291,6 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
         builder.show();
     }
 
-    //카카오 공유기능
-    public void shareKakao() {
-        try {
-            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
-            final KakaoTalkLinkMessageBuilder KakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-
-            KakaoBuilder.addText("카카오링크 테스트입니다");
-
-            kakaoLink.sendMessage(KakaoBuilder, this);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // 다시 보지 않기 버튼을 만드려면 이 부분에 바로 요청을 하도록 하면 됨 (아래 else{..} 부분 제거)
@@ -343,8 +328,9 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.shareButton:
-                shareKakao();
-                Toast.makeText(this, "공유기능", Toast.LENGTH_SHORT).show();
+                checkPermission();
+                fileshare();
+                Toast.makeText(this, "공유가능", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cameraButton:
                 checkPermission();
@@ -363,17 +349,16 @@ public class BusTotalResult extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
- /*   private void fileshare(int position) {
+    private void fileshare() {
+        ViewCapture.with(scroll).asJPG().setDirectoryName("jeonju").setFileName("temp").setOnSaveResultListener(listener).save();
         Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-        //   intent.setAction(Intent.ACTION_SEND);
-        intent.setType("application/*");
+        intent.setType("image/*");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".provider",
-                new File(Environment.getExternalStorageDirectory().getAbsolutePath() + bookfolderName + folderAndFileList.get(position).getName())));
+        intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
+                new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/jeonju/" + "temp.jpg")));
         Intent chooser = Intent.createChooser(intent, "공유하기");
         this.startActivity(chooser);
-    }*/
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
