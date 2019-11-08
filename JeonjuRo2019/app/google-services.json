@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "790044971495-3e1fva5t0621be2i0p9qi50ip6om0c8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.androidtown.jeonjuro2018",
+            "certificate_hash": "9efd6a4490f9ae39d44ff6a00305e8ff0653f756"
+          }
+        },
+        {
           "client_id": "790044971495-qaj1iov6q2dncdi76kbc2jeoikvr76jt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -44,6 +52,51 @@
           "android_info": {
             "package_name": "org.androidtown.jeonjuro2018",
             "certificate_hash": "faa72ac3132cd4c1705e9c78224edd6f1c493cf8"
+          }
+        },
+        {
+          "client_id": "790044971495-47bmkf3c1c95hf1o223l0uui2ju54rok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4a3NHA9WmLpejof2AuagLYZFAA2lYCeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790044971495-47bmkf3c1c95hf1o223l0uui2ju54rok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790044971495:android:527997c79233989d476d42",
+        "android_client_info": {
+          "package_name": "org.androidtown.jeonjuro2019"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790044971495-ddi44ulvqs412o0eqfd3niplnuf7h03k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.androidtown.jeonjuro2019",
+            "certificate_hash": "faa72ac3132cd4c1705e9c78224edd6f1c493cf8"
+          }
+        },
+        {
+          "client_id": "790044971495-1l54vv0r7q0emfgot3v0otp3nf8jpnt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.androidtown.jeonjuro2019",
+            "certificate_hash": "9efd6a4490f9ae39d44ff6a00305e8ff0653f756"
           }
         },
         {

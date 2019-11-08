@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.androidtown.jeonjuro2018">
+    package="org.androidtown.jeonjuro2019">
 
     <application
         android:allowBackup="true"
@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowSchedule"></activity>
+        <activity android:name="org.androidtown.jeonjuro2019.ShowSchedule"></activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="org.androidtown.jeonjuro2019.LoginActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,26 +20,26 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="org.androidtown.jeonjuro2019.MainActivity"></activity>
 
         <activity
-            android:name=".SplashActivity"
+            android:name="org.androidtown.jeonjuro2019.SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".Otherway" />
-        <activity android:name=".Result" />
-        <activity android:name=".Result2" />
-        <activity android:name=".Result3" />
-        <activity android:name=".BusTotalResult" />
-        <activity android:name=".TourMain" />
-        <activity android:name=".RestMain" />
-        <activity android:name=".AccomoMain" />
-        <activity android:name=".scheduleMain" />
+        <activity android:name="org.androidtown.jeonjuro2019.Otherway" />
+        <activity android:name="org.androidtown.jeonjuro2019.Result" />
+        <activity android:name="org.androidtown.jeonjuro2019.Result2" />
+        <activity android:name="org.androidtown.jeonjuro2019.Result3" />
+        <activity android:name="org.androidtown.jeonjuro2019.BusTotalResult" />
+        <activity android:name="org.androidtown.jeonjuro2019.TourMain" />
+        <activity android:name="org.androidtown.jeonjuro2019.RestMain" />
+        <activity android:name="org.androidtown.jeonjuro2019.AccomoMain" />
+        <activity android:name="org.androidtown.jeonjuro2019.scheduleMain" />
         <activity
-            android:name=".LocationDialog"
+            android:name="org.androidtown.jeonjuro2019.LocationDialog"
             android:theme="@style/Dialog" />
-        <activity android:name=".IntroActivity" />
+        <activity android:name="org.androidtown.jeonjuro2019.IntroActivity" />
         <activity
-            android:name=".addDialog"
+            android:name="org.androidtown.jeonjuro2019.addDialog"
             android:theme="@style/Dialog" />
 
         <meta-data
