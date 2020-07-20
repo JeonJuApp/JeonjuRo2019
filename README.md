@@ -6,3 +6,9 @@ android.permission.WRITE_EXTERNAL_STORAGE : 휴대폰 안의 디렉토리에 캡
 
 
 parsing하는 정보나 로그인한 개인정보는 암호화되어 공개되지 않습니다.
+
+### Developer
+1) 곽수빈
+2) 이예지
+3) 임효진
+4) 최혜연
